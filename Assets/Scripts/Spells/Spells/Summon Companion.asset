@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5294f2df05e9048b84deac6346fb2b, type: 3}
+  m_Name: Summon Companion
+  m_EditorClassIdentifier: 
+  spellName: Summon Companion
+  description: Summon a companion to assist you. Each activation doubles the cost
+    until the third, after which the companion is destroyed. Each activation also
+    levels up the companion.
+  artWork: {fileID: 21300000, guid: 780c78a280d1f3c40ba725f7c0fd8242, type: 3}
+  cost: 50

@@ -1,0 +1,254 @@
+fileFormatVersion: 2
+guid: ab4d98890394abb498874dabd6d4ebe3
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chair
+    second: {fileID: 2100000, guid: b4da919f869983640a67bfed0b77ecaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #30
+    second: {fileID: 2100000, guid: c30ff28d7e5a36b4693fee025f768d10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #31
+    second: {fileID: 2100000, guid: 55e932287692391488afbfff65518ea4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #32
+    second: {fileID: 2100000, guid: b48363d70296b074293c78ba674db250, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Note
+    second: {fileID: 2100000, guid: fd2c2fbcce1be6545af81d6717d74d66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Open Book
+    second: {fileID: 2100000, guid: fc751465ff0b2494eb621d86c19ee584, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Book_1_Mat_albedo
+    second: {fileID: 2800000, guid: 90f600c2c82bc1d40b06924857d5426d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Book_1_Mat_metallic
+    second: {fileID: 2800000, guid: 0481f3b510df77943a8d38e405f14cfd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Book_1_Mat_normal
+    second: {fileID: 2800000, guid: a8732a5cfd62eb542b27a111239e9630, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Book_1_Mat_roughness
+    second: {fileID: 2800000, guid: e54be1eac1379974e994503c85e50f8f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Book_2_Mat_albedo
+    second: {fileID: 2800000, guid: 2473d115606cf2547b9843efa9351b35, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Book_2_Mat_metallic
+    second: {fileID: 2800000, guid: 0bd0b4b7e93569f4a9cc5a61a94fb1cc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Book_2_Mat_normal
+    second: {fileID: 2800000, guid: 8cb7c3cf6f2d148439031c8af85ddc39, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Book_2_Mat_roughness
+    second: {fileID: 2800000, guid: 98053565f2a1657499496ecb6bbf31c5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chair_albedo
+    second: {fileID: 2800000, guid: af0630ae32490194ebb8c982a861b45b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chair_metallic
+    second: {fileID: 2800000, guid: 82fdd44ffd6d1694ca69263362fdba72, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chair_normal
+    second: {fileID: 2800000, guid: d8190ac28b9c28a498d37060c33178d7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chair_roughness
+    second: {fileID: 2800000, guid: 846994c69b0fa6f4b906b0aeb8130381, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: DisplacementMapWood
+    second: {fileID: 2800000, guid: 5e3d86583f2c20e48a512d917d10c341, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: NormalMapWood
+    second: {fileID: 2800000, guid: c0a6211d41f473b41b6d1e019c3ceb2c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Note_BaseColor
+    second: {fileID: 2800000, guid: 6e934aa96e74db6449f2b4dfc9c92813, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Note_Metallic
+    second: {fileID: 2800000, guid: 130de45976b6cac4687dcbb793f9ad7b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Note_Normal
+    second: {fileID: 2800000, guid: cc1fd7a225c460f4b9d7a0ff51fc8afd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Note_Roughness
+    second: {fileID: 2800000, guid: 45e5bb6f63053f446b6e977528e5770e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Open_book_Mat_albedo
+    second: {fileID: 2800000, guid: fa417dbace9a3eb4ab8a161654f7a93a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Open_book_Mat_metallic
+    second: {fileID: 2800000, guid: 50772e91f9c5db74681ed1d608f4913c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Open_book_Mat_normal
+    second: {fileID: 2800000, guid: 0037b45361650484eb7b5189d0ce5d62, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Open_book_Mat_roughness
+    second: {fileID: 2800000, guid: 5a4ee53b6a6723f4badfd4f64082875c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: brown-wooden-textured-flooring-background
+    second: {fileID: 2800000, guid: 63377b183b3b08f4ca339eabf2e5b61a, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.002
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

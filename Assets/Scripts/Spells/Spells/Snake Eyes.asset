@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5294f2df05e9048b84deac6346fb2b, type: 3}
+  m_Name: Snake Eyes
+  m_EditorClassIdentifier: 
+  spellName: Snake Eyes
+  description: Generate 6d4 dice, each with faces containing only 1, and apply a
+    bleeding effect.
+  artWork: {fileID: 21300000, guid: 8abc3d9dacf554c4f9f4a7b1a8d3ae1c, type: 3}
+  cost: 20

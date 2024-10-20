@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83541085a68ee7442954714c34af992a, type: 3}
+  m_Name: Character Database
+  m_EditorClassIdentifier: 
+  character:
+  - characterName: Ruk
+    characterSprite: {fileID: 21300000, guid: 47ce54a8e662e1f4bbfa8917fb7f76d5, type: 3}
+    description: Soldier who was demoted when his sister was accused by a classmate
+      of having negative thoughts about the kingdom.
+    d4: 0
+    d6: 0
+    d8: 2
+    d10: 3
+    d12: 1
+    d20: 0
+    initialSpell: {fileID: 11400000, guid: 20b02e0db4bbf2244ba0db30dd059282, type: 2}
+    initialArtifact: {fileID: 11400000, guid: 1f34121baa230684c9bdfe60cae88a14, type: 2}
+  - characterName: Zenlira
+    characterSprite: {fileID: 21300000, guid: 7e3258f75ea755c41a59855909956d84, type: 3}
+    description: Young girl born blind but gifted with magical vision considered
+      a threat and sentenced to death
+    d4: 4
+    d6: 2
+    d8: 0
+    d10: 0
+    d12: 0
+    d20: 0
+    initialSpell: {fileID: 11400000, guid: b74459945a9e81840827796209ad1e35, type: 2}
+    initialArtifact: {fileID: 11400000, guid: 25c96d489c3bdde499c96b67257cf83b, type: 2}
+  - characterName: Lyna
+    characterSprite: {fileID: 21300000, guid: 1f207fd60afc27d40a0bce88f5268239, type: 3}
+    description: Born into a poor family and a harsh childhood where she watched
+      each of her family members die of starvation, she became a skilled thief wanted
+      by the Council of Wealth for stealing from them.
+    d4: 1
+    d6: 4
+    d8: 1
+    d10: 0
+    d12: 0
+    d20: 0
+    initialSpell: {fileID: 11400000, guid: b9f1bf09ddf88f54c9a23ff30c7bc1c9, type: 2}
+    initialArtifact: {fileID: 11400000, guid: 8f6bef390ce33e04893f3b3f794ed550, type: 2}
