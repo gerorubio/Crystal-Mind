@@ -1,35 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
     public float speed;
     private Vector2 move;
+    private Vector3 mousePositionViewport = Vector3.zero;
+    private Quaternion desiredRotation = new Quaternion();
 
-
-
-    void Start() {
-        
+    private Vector3 targetDirection = Vector3.zero;
+    public Vector3 TargetDirection {
+        get { return targetDirection; }
+        private set { targetDirection = value; }
     }
 
+    public bool IsMoving => move.magnitude > 0.1f;
+
+
     void Update() {
-        movePlayer();
+        MovePlayer();
+        RotatePlayer();
     }
 
     public void OnMove(InputAction.CallbackContext context) {
         move = context.ReadValue<Vector2>();
     }
 
-    public void movePlayer() {
+    public void MovePlayer() {
         Vector3 movement = new Vector3(move.x, 0f, move.y);
 
         if (movement != Vector3.zero) {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
+            transform.Translate(movement * speed * Time.deltaTime, Space.World);
+            targetDirection = movement.normalized;
         }
-
-        transform.Translate(movement * speed * Time.deltaTime, Space.World);
     }
 
+    public void RotatePlayer() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+
+        if (groundPlane.Raycast(ray, out float distance)) {
+            Vector3 targetPoint = ray.GetPoint(distance);
+            Vector3 directionToMouse = (targetPoint - transform.position).normalized;
+
+            desiredRotation = Quaternion.LookRotation(directionToMouse);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.1f);
+        }
+    }
 }
