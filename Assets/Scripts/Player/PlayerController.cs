@@ -32,9 +32,12 @@ public class PlayerController : MonoBehaviour {
 
         if (movement != Vector3.zero) {
             transform.Translate(movement * speed * Time.deltaTime, Space.World);
+            // Y position does not change
+            transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
             targetDirection = movement.normalized;
         }
     }
+
 
     public void RotatePlayer() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -43,6 +46,9 @@ public class PlayerController : MonoBehaviour {
         if (groundPlane.Raycast(ray, out float distance)) {
             Vector3 targetPoint = ray.GetPoint(distance);
             Vector3 directionToMouse = (targetPoint - transform.position).normalized;
+
+            // Only rotate on y
+            directionToMouse.y = 0;
 
             desiredRotation = Quaternion.LookRotation(directionToMouse);
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.1f);

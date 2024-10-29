@@ -41,7 +41,5 @@ public class PruebaDecal : MonoBehaviour {
         } else {
             Debug.LogWarning("Decal Projector's material is not set.");
         }
-
-        Debug.Log("aaa");
     }
 }

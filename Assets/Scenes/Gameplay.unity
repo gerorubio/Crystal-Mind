@@ -1366,7 +1366,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.418
+      value: 2.376
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
@@ -2817,62 +2817,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1863748351}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1908364264
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1908364266}
-  - component: {fileID: 1908364265}
-  m_Layer: 0
-  m_Name: Decal Projector (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1908364265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908364264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 31d0dcc6f2dd4e4408d18036a2c93862, type: 2}
-  m_DrawDistance: 1000
-  m_FadeScale: 0.9
-  m_StartAngleFade: 180
-  m_EndAngleFade: 180
-  m_UVScale: {x: 1, y: 1}
-  m_UVBias: {x: 0, y: 0}
-  m_DecalLayerMask: 1
-  m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 25}
-  m_Size: {x: 50, y: 50, z: 50}
-  m_FadeFactor: 1
---- !u!4 &1908364266
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908364264}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.06008257, y: 0.70454955, z: 0.70454955, w: 0.06008257}
-  m_LocalPosition: {x: 20.9, y: -28.9, z: 1.5760487}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -80.251, y: 90, z: 90}
 --- !u!1001 &1910568166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3109,4 +3053,3 @@ SceneRoots:
   - {fileID: 272801220}
   - {fileID: 25766322}
   - {fileID: 1829534113}
-  - {fileID: 1908364266}
