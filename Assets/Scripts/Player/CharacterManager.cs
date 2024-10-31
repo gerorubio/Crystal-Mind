@@ -36,7 +36,7 @@ public class CharacterManager : MonoBehaviour {
     }
 
     public void UpdateCharacter(int selectedOption) {
-        Character character = characterDb.GetCharacter(selectedOption);
+        CharacterSO character = characterDb.GetCharacter(selectedOption);
         // Wanted Poster
         wantedPoster.sprite = character.characterSprite;
         // Name character

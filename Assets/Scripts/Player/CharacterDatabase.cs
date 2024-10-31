@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class CharacterDatabase : ScriptableObject {
-    public Character[] character;
+    public CharacterSO[] character;
 
     public int CharacterCount {
         get {
@@ -12,7 +12,7 @@ public class CharacterDatabase : ScriptableObject {
         }
     }
 
-    public Character GetCharacter(int index) {
+    public CharacterSO GetCharacter(int index) {
         return character[index];
     }
 }

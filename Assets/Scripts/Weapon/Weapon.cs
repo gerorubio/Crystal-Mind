@@ -39,14 +39,14 @@ public class Weapon : MonoBehaviour {
     void Shoot() {
         if (currentAmmunition.Count > 0 && !isReloading) {
             // Roll dice and get the result face
-            Face face = currentAmmunition[0].RollDice();
+            Face face = currentAmmunition[0].currentFace;
             // Remove dice from ammo
             currentAmmunition.RemoveAt(0);
 
-            //Debug.Log("Value: " + face.value + ", Effect: " + face.effect);
+            Debug.Log("Value: " + face.value + ", Effect: " + face.effect);
         } else {
             StartCoroutine(ReloadRoutine());
-            Debug.Log("Reloading...");
+            //Debug.Log("Reloading...");
         }
     }
 
@@ -69,6 +69,9 @@ public class Weapon : MonoBehaviour {
 
     void Reload() {
         currentAmmunition = Shuffle();
+        for (int i = 0; i < currentAmmunition.Count; i++) {
+            currentAmmunition[i].RollDice();
+        }
     }
 
     // Fisher–Yates shuffle for Lists

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dice {
     public string type;
     private Face[] faces;
+    public Face currentFace;
 
     public Dice(int numberOfFaces) {
         // Initialize the faces array with the specified length d4, d6, d8, d10, d12, d20
@@ -62,10 +63,8 @@ public class Dice {
         }
     }
 
-    public Face RollDice() {
-        Face face = this.faces[UnityEngine.Random.Range(0, this.faces.Length)];
-
-        return face;
+    public void RollDice() {
+        currentFace = this.faces[UnityEngine.Random.Range(0, this.faces.Length)];
     }
 
 
