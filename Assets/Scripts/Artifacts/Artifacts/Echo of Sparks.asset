@@ -15,3 +15,11 @@ MonoBehaviour:
   artifactName: Echo of Sparks
   description: Each time you use an active ability, it will be 10% charged automatically.
   artWork: {fileID: 21300000, guid: 6487aa55163794143aeeea6a20221390, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

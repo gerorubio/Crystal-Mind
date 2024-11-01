@@ -16,3 +16,11 @@ MonoBehaviour:
   description: When reloading, for each unused die, the reload speed increases by
     2%.
   artWork: {fileID: 21300000, guid: fd572dfd3dcb297428b629917f7b2670, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

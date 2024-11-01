@@ -15,3 +15,11 @@ MonoBehaviour:
   artifactName: Spellbook
   description: Doubles the recharge value of the active ability.
   artWork: {fileID: 21300000, guid: aee8e05f6316d434fb9c8da57b64618a, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

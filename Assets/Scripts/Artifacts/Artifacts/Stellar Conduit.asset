@@ -16,3 +16,11 @@ MonoBehaviour:
   description: Each die with a value of 7 contributes double to the active ability's
     charge.
   artWork: {fileID: 21300000, guid: add454301c403914c9482d2ea787123e, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

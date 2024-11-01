@@ -15,3 +15,11 @@ MonoBehaviour:
   artifactName: Inferno Pulse
   description: Deal 10 damage to all enemies when using an active ability.
   artWork: {fileID: 21300000, guid: 3f7c5a47a561b134c84b443a04ece099, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

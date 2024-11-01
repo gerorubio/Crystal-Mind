@@ -16,3 +16,11 @@ MonoBehaviour:
   description: An orb rotates around you, and whenever a shot passes through it,
     2 additional projectiles are generated.
   artWork: {fileID: 21300000, guid: 6f5080c336e8b3446bbc1d60e9aa1bf6, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

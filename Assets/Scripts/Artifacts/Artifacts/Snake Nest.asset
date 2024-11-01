@@ -15,3 +15,11 @@ MonoBehaviour:
   artifactName: Snake Nest
   description: Each die with a value of 2 increases critical hit chance by 0.2%.
   artWork: {fileID: 21300000, guid: 8d0b6d67ce9871749a043284b061fad4, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

@@ -16,3 +16,11 @@ MonoBehaviour:
   description: Each time you roll a die, there is a small chance of obtaining an
     additional die for one use.
   artWork: {fileID: 21300000, guid: fcc143ef6ce77dc47accf9c5a95ee7ea, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

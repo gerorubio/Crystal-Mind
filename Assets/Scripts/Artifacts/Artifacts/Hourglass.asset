@@ -15,3 +15,11 @@ MonoBehaviour:
   artifactName: Hourglass
   description: Increases the duration of active abilities by 20%.
   artWork: {fileID: 21300000, guid: 84fbe41aff430ff4e9edd9745c28795e, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

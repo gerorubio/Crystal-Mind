@@ -15,3 +15,11 @@ MonoBehaviour:
   artifactName: Cupid's Arrow
   description: Grants piercing to your dice.
   artWork: {fileID: 21300000, guid: c7b762af8c6bb0e44862108b61e3c6f3, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

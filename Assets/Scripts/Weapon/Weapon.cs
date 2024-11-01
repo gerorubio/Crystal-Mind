@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour {
+
     public float reloadTime = 2f;
     private bool isReloading = false;
 
@@ -12,7 +14,10 @@ public class Weapon : MonoBehaviour {
 
     public DiceDisplay diceDisplay; // Reference to DiceDisplay script
 
+    public event Action<int> OnReload; // reload
+
     void Awake() {
+
         ammunition.Add(new Dice(4));
         ammunition.Add(new Dice(6));
         ammunition.Add(new Dice(8));
@@ -43,7 +48,7 @@ public class Weapon : MonoBehaviour {
             // Remove dice from ammo
             currentAmmunition.RemoveAt(0);
 
-            Debug.Log("Value: " + face.value + ", Effect: " + face.effect);
+            //Debug.Log("Value: " + face.value + ", Effect: " + face.effect);
         } else {
             StartCoroutine(ReloadRoutine());
             //Debug.Log("Reloading...");
@@ -68,7 +73,17 @@ public class Weapon : MonoBehaviour {
     }
 
     void Reload() {
+        // For spell increase count
+        int remainingAmmunition = 0;
+
+        for (int i = 0; i < currentAmmunition.Count; i++) {
+            remainingAmmunition += currentAmmunition[i].currentFace.value;
+        }
+
+        OnReload?.Invoke(remainingAmmunition);
+
         currentAmmunition = Shuffle();
+
         for (int i = 0; i < currentAmmunition.Count; i++) {
             currentAmmunition[i].RollDice();
         }

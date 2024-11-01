@@ -15,3 +15,11 @@ MonoBehaviour:
   artifactName: Hemomancy
   description: 3% chance to gain 1 health when using an active ability.
   artWork: {fileID: 21300000, guid: a17583d06ec38724e9cff797bec37a8c, type: 3}
+  onShoot: 0
+  onEquip: 0
+  onReload: 0
+  onSpellCast: 0
+  onTakingDamage: 0
+  onDash: 0
+  onAmmo: 0
+  onDeath: 0

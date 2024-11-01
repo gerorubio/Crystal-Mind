@@ -88,16 +88,35 @@ public class DiceDisplay : MonoBehaviour {
                 Texture2D extractedTexture = new Texture2D(width, height);
 
                 int startX;
-                Color[] pixels;
+                Color[] pixels = new Color[width * height];
 
                 if (diceValue >= 10) {
-                    startX = (width / 2) * (diceValue / 10);
-                    int startX2 = (width / 2) * (diceValue % 10);
+                    int segmentedWidth = width / 2;
+                    int segmentedHeight = height;
 
-                    // Extract pixels from the small base texture
-                    pixels = smallBaseTexture.GetPixels(startX, 0, width / 2, height)
-                             .Concat(smallBaseTexture.GetPixels(startX2, 0, width / 2, height))
-                             .ToArray();
+                    int tens = diceValue / 10;
+                    int units = diceValue % 10;
+
+                    startX = tens * segmentedWidth;
+                    int startX2 = units * segmentedWidth;
+
+                    Color[] pixelsTens = smallBaseTexture.GetPixels(startX, 0, segmentedWidth, segmentedHeight);
+                    Color[] pixelsUnits = smallBaseTexture.GetPixels(startX2, 0, segmentedWidth, segmentedHeight);
+
+                    // Copy pixelTens to left side of the pixels texture
+                    for (int y = 0; y < segmentedHeight; y++) {
+                        for (int x = 0; x < segmentedWidth; x++) {
+                            pixels[y * width + x] = pixelsTens[y * segmentedWidth + x];
+                        }
+                    }
+
+                    // Copy pixelUnits to right side of the pixels texture
+                    for (int y = 0; y < segmentedHeight; y++) {
+                        for (int x = 0; x < segmentedWidth; x++) {
+                            pixels[y * width + x + segmentedWidth] = pixelsUnits[y * segmentedWidth + x];
+                        }
+                    }
+
                 } else {
                     startX = width * diceValue;
 
