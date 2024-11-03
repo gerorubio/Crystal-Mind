@@ -20,6 +20,7 @@ public class ArtifactDisplay : MonoBehaviour {
     }
 
     private void AddArtifact(ArtifactSO artifact) {
+        Debug.Log("aa");
         currentArtifacts.Add(artifact);
 
         UpdateDisplay();
@@ -31,21 +32,31 @@ public class ArtifactDisplay : MonoBehaviour {
             Destroy(artifact.gameObject);
         }
 
-        // Add new artifacts to the display
-        foreach (ArtifactSO artifact in currentArtifacts) {
-            // Create a new UI GameObject for the artifact
-            GameObject artifactUI = new GameObject();
-            Image artifactIcon = artifactUI.AddComponent<Image>();
+        float verticalSpacing = 10f; // Vertically space
+        float horizontalOffset = 40f; // Space for second column
+        int maxArtifactsPerColumn = 20; // Number of artifacts per column
 
+        for (int i = 0; i < currentArtifacts.Count; i++) {
+            ArtifactSO artifact = currentArtifacts[i];
+
+            GameObject artifactUI = new GameObject(artifact.name);
+            Image artifactIcon = artifactUI.AddComponent<Image>();
             artifactIcon.sprite = artifact.artWork;
 
-            // Set the parent so it appears in the correct location
+            // Set parent
             RectTransform artifactTransform = artifactUI.GetComponent<RectTransform>();
-            artifactTransform.SetParent(parentArtifact.transform, false); // false keeps local scale
+            artifactTransform.SetParent(parentArtifact.transform, false);
 
             // Set width and height
-            artifactTransform.sizeDelta = new Vector2(50, 50);
+            artifactTransform.sizeDelta = new Vector2(30, 30);
+
+            int row = i % maxArtifactsPerColumn;
+            int column = i / maxArtifactsPerColumn;
+
+            float xPosition = column * horizontalOffset;
+            float yPosition = -row * (30 + verticalSpacing);
+
+            artifactTransform.anchoredPosition = new Vector2(xPosition, yPosition);
         }
     }
-
 }

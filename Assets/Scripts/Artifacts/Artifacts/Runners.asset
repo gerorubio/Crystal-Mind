@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Runners
   m_EditorClassIdentifier: 
   artifactName: Runners
-  description: Each time you take damage, gain a temporary speed boost.
+  effects:
+  - Each time you take damage, gain a temporary speed boost.
+  - Increase movement speed by 10%.
   artWork: {fileID: 21300000, guid: 72d809ac5a850ce43bdaf0fa1951de4f, type: 3}
   onShoot: 0
-  onEquip: 0
+  onEquip: 1
   onReload: 0
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 1
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0
+  onHit: 0

@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: Whetstone
   m_EditorClassIdentifier: 
   artifactName: Whetstone
-  description: Each die with a value of 2 or lower applies a bleeding effect to the
-    enemy.
+  effects:
+  - Each die with a value of 2 or lower applies a bleeding effect to the enemy.
+  - Add a face with a value of 2.
   artWork: {fileID: 21300000, guid: 193ba1a9d00decf43a6050d354082fc8, type: 3}
   onShoot: 0
-  onEquip: 0
+  onEquip: 1
   onReload: 0
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0
+  onHit: 1

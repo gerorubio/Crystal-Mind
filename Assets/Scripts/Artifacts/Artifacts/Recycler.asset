@@ -10,17 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48469f18e9d121f4d8ee65df758dea30, type: 3}
-  m_Name: Trash Can
+  m_Name: Recycler
   m_EditorClassIdentifier: 
-  artifactName: Trash Can
-  description: When reloading, for each unused die, the reload speed increases by
-    2%.
+  artifactName: Recycler
+  effects:
+  - When reloading, for each unused die, the reload speed increases by 2%.
+  - Increase reload speed by 10%.
   artWork: {fileID: 21300000, guid: fd572dfd3dcb297428b629917f7b2670, type: 3}
   onShoot: 0
-  onEquip: 0
-  onReload: 0
+  onEquip: 1
+  onReload: 1
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0
+  onHit: 0

@@ -5,17 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Artifact", menuName = "Artifacts")]
 public class ArtifactSO : ScriptableObject {
     public string artifactName;
-    public string description;
+    public string[] effects;
     public Sprite artWork;
 
     public bool onShoot;
     public bool onEquip;
     public bool onReload;
     public bool onSpellCast;
-    public bool onTakingDamage;
+    public bool OnDamageTaken;
     public bool onDash;
     public bool onAmmo;
     public bool onDeath;
+    public bool onEnemyDeath;
+    public bool onBleedingDamage;
+    public bool onDiceModified;
+    public bool onHit;
 
     // Effect:
     // Value multiplier (Gunpowder Boost, Spellbook, Stellar Conduit, Madness, Sniper)

@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: Arsenic
   m_EditorClassIdentifier: 
   artifactName: Arsenic
-  description: Poison damage occurs twice as fast.
+  effects:
+  - Poison damage occurs twice as fast.
+  - Add 1 poison face to a dice.
   artWork: {fileID: 21300000, guid: b9cb5e40d3a77ec4897ec0f722832f6d, type: 3}
   onShoot: 0
-  onEquip: 0
+  onEquip: 1
   onReload: 0
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0

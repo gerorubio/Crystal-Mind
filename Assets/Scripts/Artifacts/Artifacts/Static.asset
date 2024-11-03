@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Static
   m_EditorClassIdentifier: 
   artifactName: Static
-  description: Every 10 attacks generate a lightning bolt that deals area damage.
+  effects:
+  - Every 10 attacks generate a lightning bolt that deals area damage.
+  - Increase fire rate by 10%
   artWork: {fileID: 21300000, guid: f8baa6d2c5d5ac04cbf53f1ec8133038, type: 3}
-  onShoot: 0
-  onEquip: 0
+  onShoot: 1
+  onEquip: 1
   onReload: 0
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0
+  onHit: 0

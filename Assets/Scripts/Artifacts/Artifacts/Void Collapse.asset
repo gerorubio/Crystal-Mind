@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: Void Collapse
   m_EditorClassIdentifier: 
   artifactName: Void Collapse
-  description: Each die with a value of 1 causes an explosion that damages nearby
-    enemies.
+  effects:
+  - Each die with a value of 1 causes an explosion that damages nearby enemies.
+  - Add a face with a value of 1.
   artWork: {fileID: 21300000, guid: a59e6e63c65d2fc4c9108fc194e5602c, type: 3}
-  onShoot: 0
-  onEquip: 0
+  onShoot: 1
+  onEquip: 1
   onReload: 0
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0
+  onHit: 0

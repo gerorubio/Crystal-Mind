@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Thorn Vines
   m_EditorClassIdentifier: 
   artifactName: Thorn Vines
-  description: When taking damage, deal 100 damage to all enemies.
+  effects:
+  - When taking damage, deal 100 damage to all enemies.
+  - Heal 1 HP.
   artWork: {fileID: 21300000, guid: 2ede0449df3eded498ad8282cb9d5528, type: 3}
   onShoot: 0
-  onEquip: 0
+  onEquip: 1
   onReload: 0
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 1
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0
+  onHit: 0

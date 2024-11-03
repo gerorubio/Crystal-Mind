@@ -14,6 +14,9 @@ public class Weapon : MonoBehaviour {
 
     public DiceDisplay diceDisplay; // Reference to DiceDisplay script
 
+    //private bool piercing =  false;
+
+    // Events
     public event Action<int> OnReload; // reload
 
     void Awake() {

@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: Fool
   m_EditorClassIdentifier: 
   artifactName: Fool
-  description: Add Xd1 when reloading, where X is the number of dice you have.
+  effects:
+  - Add Xd1 when reloading, where X is the number of dice you have.
   artWork: {fileID: 21300000, guid: f780e0b15e922654f924e101a56987fd, type: 3}
   onShoot: 0
   onEquip: 0
-  onReload: 0
+  onReload: 1
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0

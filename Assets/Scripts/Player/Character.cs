@@ -12,6 +12,7 @@ public class Character : MonoBehaviour {
     private float currentFireRate;
     private float currentMovementSpeed;
     private float currentAttackRange;
+    //private float xpCollectionRange = 5f;
 
     // Weapon
     private Weapon weapon;
@@ -54,7 +55,6 @@ public class Character : MonoBehaviour {
 
     void Start() {
         OnEquipSpell?.Invoke(currentSpell, currentSpellPoints);
-        Debug.Log(currentArtifacts.First().artifactName);
         OnEquipArtifact?.Invoke(currentArtifacts.First());
 
         weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Weapon>();
@@ -64,7 +64,7 @@ public class Character : MonoBehaviour {
 
     public void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            GainXP(1);
+
         }
     }
 

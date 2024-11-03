@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: Divine Reload
   m_EditorClassIdentifier: 
   artifactName: Divine Reload
-  description: Gain a 10% chance for an instant reload.
+  effects:
+  - Gain a 10% chance for an instant reload.
+  - Reduce reload time by 10%.
   artWork: {fileID: 21300000, guid: 4f1bf3a5542ca5143a6ff4997fb2ab19, type: 3}
   onShoot: 0
-  onEquip: 0
-  onReload: 0
+  onEquip: 1
+  onReload: 1
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0

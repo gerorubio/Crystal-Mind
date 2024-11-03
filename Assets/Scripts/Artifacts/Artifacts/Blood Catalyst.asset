@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: Blood Catalyst
   m_EditorClassIdentifier: 
   artifactName: Blood Catalyst
-  description: Increases the active ability charge by 1 each time you deal bleeding
-    damage.
+  effects:
+  - Increase spell counter by 1 each time you deal bleeding damage.
+  - Add 1 bleeding face to a dice.
   artWork: {fileID: 21300000, guid: 0b64d44ec44bb5442ad6f98153f86664, type: 3}
   onShoot: 0
-  onEquip: 0
+  onEquip: 1
   onReload: 0
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 1
+  onDiceModified: 0

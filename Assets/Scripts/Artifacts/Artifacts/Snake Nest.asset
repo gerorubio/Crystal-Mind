@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Snake Nest
   m_EditorClassIdentifier: 
   artifactName: Snake Nest
-  description: Each die with a value of 2 increases critical hit chance by 0.2%.
+  effects:
+  - All dices with a value of 2 do a critical hit.
+  - Add a face with a value of 2.
   artWork: {fileID: 21300000, guid: 8d0b6d67ce9871749a043284b061fad4, type: 3}
-  onShoot: 0
-  onEquip: 0
+  onShoot: 1
+  onEquip: 1
   onReload: 0
   onSpellCast: 0
-  onTakingDamage: 0
+  OnDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
+  onEnemyDeath: 0
+  onBleedingDamage: 0
+  onDiceModified: 0
+  onHit: 0
