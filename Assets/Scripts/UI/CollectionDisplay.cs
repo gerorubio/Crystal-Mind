@@ -7,6 +7,7 @@ public class CollectionDisplay : MonoBehaviour {
     // Databases
     public ArtifactDatabase artifactDatabase;
     public SpellDatabase spellDatabase;
+    public BeakerDatabase beakerDatabase;
 
     // UI prefab
     public GameObject boxContainer;
@@ -15,10 +16,12 @@ public class CollectionDisplay : MonoBehaviour {
     // Containers
     public GameObject artifactContainer;
     public GameObject spellContainer;
+    public GameObject beakerContainer;
 
     void Start() {
         ArtifactDisplay();
         SpellDisplay();
+        BeakerDisplay();
     }
 
     private void ArtifactDisplay() {
@@ -82,6 +85,42 @@ public class CollectionDisplay : MonoBehaviour {
             Image parentImage = spellPrefab.GetComponent<Image>();
             if (parentImage != null) {
                 parentImage.sprite = spell.artWork;
+            }
+
+            i++;
+
+            if (i > 4) {
+                i = 0;
+                j++;
+            }
+        }
+    }
+
+    private void BeakerDisplay() {
+        int i = 0;
+        int j = 0;
+
+        float xOffset = 260f; // Horizontal spacing between artifacts
+        float yOffset = 280f; // Vertical spacing between artifacts
+
+        // Get the height of the parent container to start from the top-left
+        RectTransform parentRect = beakerContainer.GetComponent<RectTransform>();
+        float startX = 40; // Start at the left edge
+        float startY = -50; // Start at the top edge
+
+        foreach (var beaker in beakerDatabase.beaker) {
+            GameObject beakerPrefab = Instantiate(boxContainer, beakerContainer.transform);
+
+            RectTransform rectTransform = beakerPrefab.GetComponent<RectTransform>();
+
+            // Calculate position relative to the top-left corner
+            float xPos = startX + (i * xOffset);
+            float yPos = startY - (j * yOffset);
+            rectTransform.localPosition = new Vector2(xPos, yPos);
+
+            Image parentImage = beakerPrefab.GetComponent<Image>();
+            if (parentImage != null) {
+                parentImage.sprite = beaker.artWork;
             }
 
             i++;

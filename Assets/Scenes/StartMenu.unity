@@ -11873,7 +11873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2031772221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11930,12 +11930,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   artifactDatabase: {fileID: 11400000, guid: 8d16a2ff7c723f344ba6e5013bb97dfe, type: 2}
   spellDatabase: {fileID: 11400000, guid: 57434992b66aa624f80e79aba2303009, type: 2}
+  beakerDatabase: {fileID: 11400000, guid: 9edfc62351d574a42bd300a10c1de8bb, type: 2}
   boxContainer: {fileID: 2855023072122423472, guid: 5ca3ab3b07323874c9aa62788c8aa614,
     type: 3}
   circleContainer: {fileID: 4407799229659600906, guid: a51167de9bba69640a358b1fe4f2847a,
     type: 3}
   artifactContainer: {fileID: 1600591176}
   spellContainer: {fileID: 1274212485}
+  beakerContainer: {fileID: 1270041117}
 --- !u!1 &2041556890
 GameObject:
   m_ObjectHideFlags: 0
@@ -12102,7 +12104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2087303652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12516,6 +12518,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191687886234603664, guid: 6d7e67a8ae1655f4c9976abfe18b6223,
+        type: 3}
+      propertyPath: m_text
+      value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 7511415441437713110, guid: 6d7e67a8ae1655f4c9976abfe18b6223,
         type: 3}

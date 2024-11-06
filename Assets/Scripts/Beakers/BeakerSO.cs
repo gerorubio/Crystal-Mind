@@ -6,7 +6,7 @@ using UnityEngine;
 public class BeakerSO : ScriptableObject {
     public string beakerName;
     public string description;
-    public Texture2D artwork;
+    public Sprite artWork;
 
     public void Use(List<Dice> dices, List<Face> faces) {
         switch (beakerName) {
