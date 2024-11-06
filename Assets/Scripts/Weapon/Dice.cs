@@ -5,6 +5,8 @@ using UnityEngine;
 public class Dice {
     public string type;
     private Face[] faces;
+    public Face[] Faces { get { return faces; } }
+
     public Face currentFace;
 
     public Dice(int numberOfFaces) {
@@ -12,7 +14,7 @@ public class Dice {
         this.faces = new Face[numberOfFaces];
 
         for (int i = 0; i < numberOfFaces; i++) {
-            this.faces[i] = new Face(i + 1, "None");
+            this.faces[i] = new Face(i + 1, EffectType.None);
         }
 
         switch (numberOfFaces) {
@@ -38,7 +40,6 @@ public class Dice {
                 Debug.LogError("Number of faces not allowed");
                 break;
         }
-
     }
 
     public void ModifyValue(int faceIndex, int newValue) {
@@ -49,7 +50,7 @@ public class Dice {
         }
     }
 
-    public void AddEffect(int faceIndex, string newEffect) {
+    public void AddEffect(int faceIndex, EffectType newEffect) {
         if (faceIndex >= 0 && faceIndex < faces.Length) {
             this.faces[faceIndex].effect = newEffect;
         } else {

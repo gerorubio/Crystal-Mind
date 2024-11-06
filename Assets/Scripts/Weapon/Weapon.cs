@@ -8,13 +8,32 @@ public class Weapon : MonoBehaviour {
 
     public float reloadTime = 2f;
     private bool isReloading = false;
+    private bool isGamePaused = false;
 
     private List<Dice> ammunition = new List<Dice>();
+    public List<Dice> Ammunition { get { return ammunition; } }
+
     private List<Dice> currentAmmunition = new List<Dice>();
 
     public DiceDisplay diceDisplay; // Reference to DiceDisplay script
 
-    //private bool piercing =  false;
+    private bool piercing = false;
+    public bool Piercing {
+        get { return piercing; }
+        set { piercing = value; }
+    }
+
+    private float projectileSize;
+    public float ProjectileSize {
+        get { return projectileSize; }
+        set { projectileSize = value; }
+    }
+
+    private float knockback;
+    public float Knockback {
+        get { return knockback; }
+        set { knockback = value; }
+    }
 
     // Events
     public event Action<int> OnReload; // reload
@@ -33,7 +52,8 @@ public class Weapon : MonoBehaviour {
     }
 
     void Update() {
-        // Temporal
+        if (isGamePaused) return;
+
         if (Input.GetMouseButtonDown(0)) {
             Shoot();
             UpdateDisplay();
@@ -51,10 +71,10 @@ public class Weapon : MonoBehaviour {
             // Remove dice from ammo
             currentAmmunition.RemoveAt(0);
 
-            //Debug.Log("Value: " + face.value + ", Effect: " + face.effect);
+            Debug.Log("Value: " + face.value + ", Effect: " + face.effect);
         } else {
             StartCoroutine(ReloadRoutine());
-            //Debug.Log("Reloading...");
+            Debug.Log("Reloading...");
         }
     }
 
@@ -110,5 +130,23 @@ public class Weapon : MonoBehaviour {
 
     void UpdateDisplay() {
         diceDisplay.UpdateDiceDisplay(this.currentAmmunition);
+    }
+
+    private void OnEnable() {
+        GameManager.OnGamePaused += HandleGamePaused;
+        GameManager.OnGameResumed += HandleGameResumed;
+    }
+
+    private void OnDisable() {
+        GameManager.OnGamePaused -= HandleGamePaused;
+        GameManager.OnGameResumed -= HandleGameResumed;
+    }
+
+    private void HandleGamePaused() {
+        isGamePaused = true;
+    }
+
+    private void HandleGameResumed() {
+        isGamePaused = false;
     }
 }

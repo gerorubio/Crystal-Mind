@@ -20,7 +20,6 @@ public class ArtifactDisplay : MonoBehaviour {
     }
 
     private void AddArtifact(ArtifactSO artifact) {
-        Debug.Log("aa");
         currentArtifacts.Add(artifact);
 
         UpdateDisplay();

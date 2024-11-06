@@ -7,12 +7,51 @@ using UnityEngine;
 public class Character : MonoBehaviour {
     public CharacterSO characterSO;
 
+    private bool isGamePaused = false;
+
+    // Base Stats
+
     private int currentHp;
+    public int CurrentHp {
+        get { return currentHp; }
+        set { currentHp = value; }
+    }
+
     private float currentReloadSpeed;
+    public float CurrentReloadSpeed {
+        get { return currentReloadSpeed; }
+        set { currentReloadSpeed = value; }
+    }
+
     private float currentFireRate;
+    public float CurrentFireRate {
+        get { return currentFireRate; }
+        set { currentFireRate = value; }
+    }
+
     private float currentMovementSpeed;
+    public float CurrentMovementSpeed {
+        get { return currentMovementSpeed; }
+        set { currentMovementSpeed = value; }
+    }
+
     private float currentAttackRange;
-    //private float xpCollectionRange = 5f;
+    public float CurrentAttackRange {
+        get { return currentAttackRange; }
+        set { currentAttackRange = value; }
+    }
+
+    private float currentCriticalChance = 0f;
+    public float CurrentCriticalChance {
+        get { return currentCriticalChance; }
+        set { currentCriticalChance = value; }
+    }
+
+    private float currentXpCollectionRange = 5f;
+    public float CurrentXpCollectionRange {
+        get { return currentXpCollectionRange; }
+        set { currentXpCollectionRange = value; }
+    }
 
     // Weapon
     private Weapon weapon;
@@ -63,8 +102,10 @@ public class Character : MonoBehaviour {
     }
 
     public void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (isGamePaused) return;
 
+        if (Input.GetMouseButtonDown(0)) {
+            GainXP(1);
         }
     }
 
@@ -86,7 +127,7 @@ public class Character : MonoBehaviour {
         currentSpellPoints = 0;
     }
 
-    void GainXP(int xp) {
+    public void GainXP(int xp) {
         this.currentXP += xp;
 
         if(this.currentXP >= xpToNextLevel) {
@@ -104,11 +145,30 @@ public class Character : MonoBehaviour {
     }
 
     private void LevelUp() {
-        // Choose between spells, artifacts or dices
+        GameManager.Instance.TogglePause();
+        OnLevelUp?.Invoke(currentLevel); // current level will be to apply weight in upgrade rarity
     }
 
     private void IncreaseSpellPoints(int value) {
         currentSpellPoints = Mathf.Clamp(currentSpellPoints + value, 0, currentSpell.cost);
         OnIncreaseSpellPoints?.Invoke(currentSpellPoints);
+    }
+
+    private void OnEnable() {
+        GameManager.OnGamePaused += HandleGamePaused;
+        GameManager.OnGameResumed += HandleGameResumed;
+    }
+
+    private void OnDisable() {
+        GameManager.OnGamePaused -= HandleGamePaused;
+        GameManager.OnGameResumed -= HandleGameResumed;
+    }
+
+    private void HandleGamePaused() {
+        isGamePaused = true;
+    }
+
+    private void HandleGameResumed() {
+        isGamePaused = false;
     }
 }

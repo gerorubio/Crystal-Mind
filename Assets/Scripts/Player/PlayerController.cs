@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+        if (GameManager.GameIsPaused) return;
+
         MovePlayer();
         RotatePlayer();
     }

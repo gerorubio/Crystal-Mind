@@ -15,7 +15,7 @@ MonoBehaviour:
   artifactName: Snake Nest
   effects:
   - All dices with a value of 2 do a critical hit.
-  - Add a face with a value of 2.
+  - Change the value of a face to 2.
   artWork: {fileID: 21300000, guid: 8d0b6d67ce9871749a043284b061fad4, type: 3}
   onShoot: 1
   onEquip: 1

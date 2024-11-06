@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c98117e21eec9479dc4a04a146b779, type: 3}
+  m_Name: Scorpio
+  m_EditorClassIdentifier: 
+  beakerName: 'Scorpio '
+  description: Select 3 dice and increase the visible face by 1.
+  artwork: {fileID: 2800000, guid: b15bc8c30cc466d47862cfc76ff5b22e, type: 3}
