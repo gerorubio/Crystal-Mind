@@ -61,6 +61,7 @@ public class Character : MonoBehaviour {
     private SpellSO currentSpell;
     public SpellSO CurrentSpell {
         get { return currentSpell; }
+        set { currentSpell = value; }
     }
 
     private int currentSpellPoints;
