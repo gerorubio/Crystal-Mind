@@ -15,3 +15,4 @@ MonoBehaviour:
   beakerName: 'Scorpio '
   description: Select 3 dice and increase the visible face by 1.
   artWork: {fileID: 21300000, guid: b15bc8c30cc466d47862cfc76ff5b22e, type: 3}
+  requiredDices: 3

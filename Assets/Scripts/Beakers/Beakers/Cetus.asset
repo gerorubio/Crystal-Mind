@@ -15,3 +15,4 @@ MonoBehaviour:
   beakerName: Cetus
   description: Select 2 dice and add the Poison effect to the visible face.
   artWork: {fileID: 21300000, guid: f99872fa0e402574f9ffaa842684ac12, type: 3}
+  requiredDices: 2

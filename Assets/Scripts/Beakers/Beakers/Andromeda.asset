@@ -15,3 +15,4 @@ MonoBehaviour:
   beakerName: Andromeda
   description: Select 5 dice and decrease the visible face by 1
   artWork: {fileID: 21300000, guid: 5bd34c9130a7207449f208f86ac4d0ac, type: 3}
+  requiredDices: 4

@@ -21,6 +21,10 @@ public class ArtifactSO : ScriptableObject {
     public bool onDiceModified;
     public bool onHit;
 
+    public bool upgradeDice;
+    public int value;
+    public EffectType effect;
+
     // Effect:
     // Value multiplier (Gunpowder Boost, Spellbook, Stellar Conduit, Madness, Sniper)
     // Add status (Whetstone, Cupid's Arrow, Void Collapse, Titan's Reach)
@@ -105,9 +109,6 @@ public class ArtifactSO : ScriptableObject {
                     Dice selectDice = weapon.Ammunition[randomDice];
 
                     weapon.Ammunition.RemoveAt(randomDice);
-                    // Clean memory Garbage Collector?
-                    //selectDice = null;
-                    //System.GC.Collect();
                 }
                 break;
             case "Perfect Grip":

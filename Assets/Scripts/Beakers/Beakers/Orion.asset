@@ -15,3 +15,4 @@ MonoBehaviour:
   beakerName: Orion
   description: Select 2 die and double the visible face value.
   artWork: {fileID: 21300000, guid: 9687f0112a2cab24fa125ee252207894, type: 3}
+  requiredDices: 2

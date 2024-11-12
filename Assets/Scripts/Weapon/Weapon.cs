@@ -47,6 +47,7 @@ public class Weapon : MonoBehaviour {
         ammunition.Add(new Dice(12));
         ammunition.Add(new Dice(20));
 
+
         Reload();
         UpdateDisplay();
     }
@@ -71,10 +72,10 @@ public class Weapon : MonoBehaviour {
             // Remove dice from ammo
             currentAmmunition.RemoveAt(0);
 
-            Debug.Log("Value: " + face.value + ", Effect: " + face.effect);
+            //Debug.Log("Value: " + face.value + ", Effect: " + face.effect);
         } else {
             StartCoroutine(ReloadRoutine());
-            Debug.Log("Reloading...");
+            //Debug.Log("Reloading...");
         }
     }
 
@@ -96,6 +97,9 @@ public class Weapon : MonoBehaviour {
     }
 
     void Reload() {
+        foreach (Dice dice in ammunition) {
+            dice.PrintAllFaces();
+        }
         // For spell increase count
         int remainingAmmunition = 0;
 

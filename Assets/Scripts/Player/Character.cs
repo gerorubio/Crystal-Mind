@@ -57,6 +57,10 @@ public class Character : MonoBehaviour {
     private Weapon weapon;
     // Artifacts
     private List<ArtifactSO> currentArtifacts = new List<ArtifactSO>();
+    public List<ArtifactSO> CurrentArtifacts {
+        get { return currentArtifacts; }
+    }
+
     // Spell
     private SpellSO currentSpell;
     public SpellSO CurrentSpell {
@@ -75,7 +79,7 @@ public class Character : MonoBehaviour {
     private int currentXP = 0;
     private int xpToNextLevel = 5;
 
-    // Unity events
+    // UNITY EVENTS
     public event Action<int, int> OnXpChanged; // currentXP, xpToNextLevel
     public event Action<int> OnLevelUp; // currenLevel
     public event Action<SpellSO, int> OnEquipSpell; // currentSpell, currentSpellPoints
@@ -137,8 +141,6 @@ public class Character : MonoBehaviour {
             LevelUp();
 
             xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f);
-
-            OnLevelUp?.Invoke(currentLevel);
         }
 
         OnXpChanged?.Invoke(currentXP, xpToNextLevel);
@@ -155,6 +157,15 @@ public class Character : MonoBehaviour {
         OnIncreaseSpellPoints?.Invoke(currentSpellPoints);
     }
 
+    public void EquipSpell() {
+        OnEquipSpell?.Invoke(currentSpell, currentSpellPoints);
+    }
+
+    public void EquipArtifact(ArtifactSO artifact, Face face) {
+        artifact.Equip(this, weapon, face);
+    }
+
+    // PAUSE GAME
     private void OnEnable() {
         GameManager.OnGamePaused += HandleGamePaused;
         GameManager.OnGameResumed += HandleGameResumed;

@@ -15,3 +15,4 @@ MonoBehaviour:
   beakerName: Hydra
   description: Select 2 dice and add the bleed effect to the visible face.
   artWork: {fileID: 21300000, guid: a1bdeafe429cd254eb9d7832f038685e, type: 3}
+  requiredDices: 2

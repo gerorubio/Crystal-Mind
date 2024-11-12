@@ -7,6 +7,7 @@ public class BeakerSO : ScriptableObject {
     public string beakerName;
     public string description;
     public Sprite artWork;
+    public int requiredDices;
 
     public void Use(List<Dice> dices, List<Face> faces) {
         switch (beakerName) {

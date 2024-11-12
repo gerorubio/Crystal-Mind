@@ -16,3 +16,4 @@ MonoBehaviour:
   description: Select 1 die and convert the visible face to the number of faces the
     die has.
   artWork: {fileID: 21300000, guid: 6f3e4b50bf80f734abda56ec032911f0, type: 3}
+  requiredDices: 1

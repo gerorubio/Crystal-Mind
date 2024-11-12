@@ -15,3 +15,4 @@ MonoBehaviour:
   beakerName: Ursa Minor
   description: Select 2 dice and add the Frozen effect to the visible face.
   artWork: {fileID: 21300000, guid: c97dd9b8225fe2e44b0b43930ce2ca42, type: 3}
+  requiredDices: 2

@@ -28,3 +28,7 @@ MonoBehaviour:
   onEnemyDeath: 1
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 1
+  value: -1
+  effect: 4

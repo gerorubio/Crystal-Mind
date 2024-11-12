@@ -16,3 +16,4 @@ MonoBehaviour:
   description: Select 2 dice, copy the visible face of the first one to the visible
     face of the second one.
   artWork: {fileID: 21300000, guid: b1d74e6812d902b4f87bdf3fcf6e9b1a, type: 3}
+  requiredDices: 2

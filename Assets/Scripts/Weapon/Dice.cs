@@ -59,9 +59,12 @@ public class Dice {
     }
 
     public void PrintAllFaces() {
+        Debug.Log("**************************");
+        Debug.Log("Dice Type: " + type);
         for (int i = 0; i < faces.Length; i++) {
             Debug.Log("Face " + (i + 1) + ": Value = " + faces[i].value + ", Effect = " + faces[i].effect);
         }
+        Debug.Log("**************************");
     }
 
     public void RollDice() {

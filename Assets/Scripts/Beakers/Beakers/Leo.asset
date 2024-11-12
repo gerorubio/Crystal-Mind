@@ -15,3 +15,4 @@ MonoBehaviour:
   beakerName: Leo
   description: Select 1 die and increase the visible face by 3.
   artWork: {fileID: 21300000, guid: 7a6c811520843ff4eb6f0edd1dab8198, type: 3}
+  requiredDices: 1

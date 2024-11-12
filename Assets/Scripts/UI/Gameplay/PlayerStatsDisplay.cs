@@ -13,9 +13,23 @@ public class PlayerStatsDisplay : MonoBehaviour {
 
     private Character player;
 
+    private float time = 0f;
+
     private void Start() {
         player = FindObjectOfType<Character>();
+        UpdateStats();
+    }
 
+    void Update() {
+        if (time >= 5f) {
+            UpdateStats();
+            time = 0f;
+        } else {
+            time += Time.deltaTime;
+        }
+    }
+
+    private void UpdateStats() {
         hp.text = "HP: " + player.CurrentHp;
         fireRate.text = "Fire rate: " + player.CurrentFireRate;
         movementSpeed.text = "Movement speed: " + player.CurrentMovementSpeed;
