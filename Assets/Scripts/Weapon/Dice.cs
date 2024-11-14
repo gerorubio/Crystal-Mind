@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
 public class Dice {
     public string type;
@@ -15,6 +17,44 @@ public class Dice {
 
         for (int i = 0; i < numberOfFaces; i++) {
             this.faces[i] = new Face(i + 1, EffectType.None);
+        }
+
+        switch (numberOfFaces) {
+            case 4:
+                type = "d4";
+                break;
+            case 6:
+                type = "d6";
+                break;
+            case 8:
+                type = "d8";
+                break;
+            case 10:
+                type = "d10";
+                break;
+            case 12:
+                type = "d12";
+                break;
+            case 20:
+                type = "d20";
+                break;
+            default:
+                Debug.LogError("Number of faces not allowed");
+                break;
+        }
+    }
+
+    public Dice(int numberOfFaces, float probability) {
+        // Initialize the faces array with the specified length d4, d6, d8, d10, d12, d20
+        this.faces = new Face[numberOfFaces];
+
+        for (int i = 0; i < numberOfFaces; i++) {
+            this.faces[i] = new Face(i + 1, EffectType.None);
+            if (UnityEngine.Random.Range(0, 100) < probability) {
+                // Assign a random EffectType to the face
+                int effectTypeCount = Enum.GetValues(typeof(EffectType)).Length;
+                this.faces[i].effect = (EffectType)UnityEngine.Random.Range(0, effectTypeCount);
+            }
         }
 
         switch (numberOfFaces) {
@@ -59,7 +99,6 @@ public class Dice {
     }
 
     public void PrintAllFaces() {
-        Debug.Log("**************************");
         Debug.Log("Dice Type: " + type);
         for (int i = 0; i < faces.Length; i++) {
             Debug.Log("Face " + (i + 1) + ": Value = " + faces[i].value + ", Effect = " + faces[i].effect);
@@ -71,10 +110,8 @@ public class Dice {
         currentFace = this.faces[UnityEngine.Random.Range(0, this.faces.Length)];
     }
 
-
     public int SelectFace() {
         int index = UnityEngine.Random.Range(0, this.faces.Length);
-
         return index;
     }
 }

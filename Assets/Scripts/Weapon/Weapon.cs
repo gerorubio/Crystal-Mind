@@ -97,9 +97,9 @@ public class Weapon : MonoBehaviour {
     }
 
     void Reload() {
-        foreach (Dice dice in ammunition) {
-            dice.PrintAllFaces();
-        }
+        //foreach (Dice dice in ammunition) {
+        //    dice.PrintAllFaces();
+        //}
         // For spell increase count
         int remainingAmmunition = 0;
 

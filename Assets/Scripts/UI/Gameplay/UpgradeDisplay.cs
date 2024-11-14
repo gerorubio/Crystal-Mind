@@ -19,7 +19,7 @@ public class UpgradeDisplay : MonoBehaviour {
     public BeakerDatabase beakerDatabase;
     public ArtifactDatabase artifactDatabase;
 
-    private List<UnityEngine.Object> selectedUpgrades = new List<UnityEngine.Object>();
+    private List<object> selectedUpgrades = new List<object>();
 
     private Character player;
     private Weapon weapon;
@@ -75,10 +75,21 @@ public class UpgradeDisplay : MonoBehaviour {
     }
 
     private void SelectUpgrades() {
-        List<UnityEngine.Object> allUpgrades = new List<UnityEngine.Object>();
-        //allUpgrades.AddRange(artifactDatabase.artifact);
-        //allUpgrades.AddRange(spellDatabase.spell);
+        List<object> allUpgrades = new List<object>();
+        allUpgrades.AddRange(artifactDatabase.artifact);
+        allUpgrades.AddRange(spellDatabase.spell);
         allUpgrades.AddRange(beakerDatabase.beaker);
+
+        // Dices option
+        Dice[] diceUpgrade = new Dice[6];
+        diceUpgrade[0] = new Dice(4, 5);
+        diceUpgrade[1] = new Dice(6, 5);
+        diceUpgrade[2] = new Dice(8, 5);
+        diceUpgrade[3] = new Dice(10, 5);
+        diceUpgrade[4] = new Dice(12, 5);
+        diceUpgrade[5] = new Dice(20, 5);
+
+        allUpgrades.AddRange(diceUpgrade);
 
         ShuffleList(allUpgrades);
 
@@ -110,7 +121,6 @@ public class UpgradeDisplay : MonoBehaviour {
         parentUpgrades.transform.localPosition = Vector3.zero;
 
         for (int i =0; i < 4; i++) {
-            Debug.Log(i);
             if (selectedUpgrades[i] is ArtifactSO || selectedUpgrades[i] is BeakerSO) {
                 box = Instantiate(artifactBeakerUpgradeBox, parentUpgrades.transform);
             } else {
@@ -123,7 +133,7 @@ public class UpgradeDisplay : MonoBehaviour {
             Button button = box.GetComponent<Button>();
 
             // ***********   ARTIFACTS   *************
-            if (selectedUpgrades[i] is ArtifactSO artifact) {
+            if(selectedUpgrades[i] is ArtifactSO artifact) {
                 // Title
                 if (title != null) {
                     title.text = artifact.artifactName;
@@ -141,7 +151,7 @@ public class UpgradeDisplay : MonoBehaviour {
                 });
 
             // ***********   BEAKERS   ***************
-            } else if (selectedUpgrades[i] is BeakerSO beaker) {
+            } else if(selectedUpgrades[i] is BeakerSO beaker) {
                 // Title
                 if (title != null) {
                     title.text = beaker.beakerName;
@@ -159,7 +169,7 @@ public class UpgradeDisplay : MonoBehaviour {
                 });
 
             // ***********   SPELLS   ****************
-            } else if (selectedUpgrades[i] is SpellSO spell) {
+            } else if(selectedUpgrades[i] is SpellSO spell) {
                 // Title
                 if (title != null) {
                     title.text = spell.spellName;
@@ -173,6 +183,30 @@ public class UpgradeDisplay : MonoBehaviour {
                 // OnClick
                 button.onClick.AddListener(() => {
                     SelectSpellUpgrade(spell);
+                });
+            } else if (selectedUpgrades[i] is Dice dice) {
+                // Title
+                if (title != null) {
+                    title.text = dice.type;
+                }
+                // Effect
+                if (effect != null) {
+                    for (int j = 0; j < dice.Faces.Length; j++) {
+                        if (dice.Faces[j].effect != EffectType.None) {
+                            effect.text += dice.Faces[j].value + ": " + dice.Faces[j].effect + "\n";
+                        }
+                    }
+                }
+                // Artwork
+                if (artwork != null) {
+                    artwork.enabled = false;
+                    GameObject newDice = Instantiate(dicePrefabs[dice.type], box.transform);
+                    newDice.transform.localPosition = new Vector3(0, 180, 0);
+                }
+                // OnClick
+                button.onClick.AddListener(() => {
+                    weapon.Ammunition.Add(dice);
+                    ResumeGame();
                 });
             }
 
