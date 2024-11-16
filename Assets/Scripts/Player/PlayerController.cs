@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour {
             OnShoot?.Invoke();
         }
 
+        if (reloadAction.ReadValue<float>() > 0) {
+            OnShoot?.Invoke();
+        }
+
         RotatePlayer();
     }
 

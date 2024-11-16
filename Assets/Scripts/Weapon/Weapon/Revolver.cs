@@ -6,46 +6,31 @@ public class Revolver : Weapon {
     public GameObject bulletPrefab;
 
     protected override void Shoot() {
-        if (isGamePaused || isReloading) {
-            return;
-        }
+        // Roll dice and get the result face
+        Face face = ammunitionSystem.CurrentAmmunition[0].currentFace;
+        // Remove dice from ammo
+        ammunitionSystem.CurrentAmmunition.RemoveAt(0);
 
-        if(Time.time < nextFiretime) {
-            return;
-        }
+        // Get the Z-axis rotation from the Player GameObject
+        float playerYRotation = transform.parent.eulerAngles.y;
+        Quaternion zRotation = Quaternion.Euler(0f, playerYRotation, 0f);
 
-        if (ammunitionSystem.CurrentAmmunition.Count > 0) {
-            // Roll dice and get the result face
-            Face face = ammunitionSystem.CurrentAmmunition[0].currentFace;
-            // Remove dice from ammo
-            ammunitionSystem.CurrentAmmunition.RemoveAt(0);
-
-            // Get the Z-axis rotation from the Player GameObject
-            float playerYRotation = transform.parent.eulerAngles.y;
-            Quaternion zRotation = Quaternion.Euler(0f, playerYRotation, 0f);
-
-            // Instantiate the bullet
-            GameObject bullet = Instantiate(
-                bulletPrefab,
-                projectileSource.transform.position,
-                zRotation
-            );
-
-            Projectile projectile = bullet.AddComponent<Projectile>();
-            CreateProjectile(projectile, face);
+        // Instantiate the bullet
+        GameObject bullet = Instantiate(
+            bulletPrefab,
+            projectileSource.transform.position,
+            zRotation
+        );
+        // Set parent
+        bullet.transform.SetParent(parentProjectiles.transform);
+        // Get Projectile Component
+        Projectile projectile = bullet.GetComponent<Projectile>();
+        // Initialize projectile
+        projectile.InitProjectile(this, face);
             
-            float force = projectile.force;
+        float force = projectile.Force;
 
-            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * force, ForceMode.Impulse);
-
-
-            nextFiretime = Time.time + fireRate;
-
-        } else if(!isReloading) {
-            StartCoroutine(ReloadRoutine());
-        }
-
-        UpdateDisplay();
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * force, ForceMode.Impulse);
     }
 
 }

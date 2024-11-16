@@ -162,6 +162,7 @@ public class Character : MonoBehaviour {
 
     public void EquipArtifact(ArtifactSO artifact, Face face) {
         artifact.Equip(this, weapon, face);
+        OnEquipArtifact?.Invoke(artifact);
     }
 
     // PAUSE GAME

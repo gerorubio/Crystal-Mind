@@ -18,7 +18,7 @@ public abstract class Weapon : MonoBehaviour {
     protected float fireRate = 0.5f;
     public float FireRate {
         get { return fireRate; }
-        set {  fireRate = value; }
+        set { fireRate = value; }
     }
 
     protected float nextFiretime = 0f;
@@ -41,12 +41,16 @@ public abstract class Weapon : MonoBehaviour {
         set { knockback = value; }
     }
 
+    private float attackRange = 2f;
+
     // Ammunition System
     public int[] initialAmmunition = new int[6];
     protected AmmunitionSystem ammunitionSystem;
     public AmmunitionSystem AmmunitionSystem {
         get { return ammunitionSystem; }
     }
+
+    public float AttackRange { get => attackRange; set => attackRange = value; }
 
     // UI Why is this here?
     public DiceDisplay diceDisplay; // Reference to DiceDisplay script
@@ -76,11 +80,11 @@ public abstract class Weapon : MonoBehaviour {
             Debug.LogError("ProjectileSource not found. Ensure the child object exists and is named 'ProjectileSource'.");
         }
 
-        parentProjectiles = new GameObject();
+        parentProjectiles = new GameObject("Bullet Container");
     }
 
     private void InitializeAmmunitionSystem() {
-        ammunitionSystem =  new AmmunitionSystem();
+        ammunitionSystem = new AmmunitionSystem();
         int d4 = initialAmmunition[0];
         int d6 = initialAmmunition[1];
         int d8 = initialAmmunition[2];
@@ -90,6 +94,21 @@ public abstract class Weapon : MonoBehaviour {
         ammunitionSystem.InitializeAmmunition(d4, d6, d8, d12, d10, d20);
     }
 
+    private void ShootHandler() {
+        if (isGamePaused || isReloading) {
+            return;
+        }
+
+        if (ammunitionSystem.CurrentAmmunition.Count > 0) {
+            if (Time.time >= nextFiretime) {
+                Shoot();
+                nextFiretime = Time.time + fireRate;
+            }
+        } else if(!isReloading) {
+            StartCoroutine(ReloadRoutine());
+        }
+        UpdateDisplay();
+    }
 
     protected abstract void Shoot(); // Abstract method for shooting, implemented in derived classes
 
@@ -105,16 +124,6 @@ public abstract class Weapon : MonoBehaviour {
         UpdateDisplay();
     }
 
-    
-
-    protected virtual void CreateProjectile(Projectile projectile, Face face) {
-        if (projectile != null) {
-            projectile.damage = face.value;
-            projectile.effect = face.effect;
-        }
-    }
-
-
     protected virtual void UpdateDisplay() {
         diceDisplay.UpdateDiceDisplay(ammunitionSystem.CurrentAmmunition);
     }
@@ -124,7 +133,7 @@ public abstract class Weapon : MonoBehaviour {
         GameManager.OnGameResumed += HandleGameResumed;
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if (playerController != null) {
-            playerController.OnShoot += Shoot;
+            playerController.OnShoot += ShootHandler;
         }
     }
 
@@ -133,8 +142,8 @@ public abstract class Weapon : MonoBehaviour {
         GameManager.OnGameResumed -= HandleGameResumed;
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if(playerController != null) {
-                playerController.OnShoot -= Shoot;
-                }
+            playerController.OnShoot -= ShootHandler;
+        }
     }
 
     private void HandleGamePaused() {
