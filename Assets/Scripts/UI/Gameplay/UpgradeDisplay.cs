@@ -205,7 +205,7 @@ public class UpgradeDisplay : MonoBehaviour {
                 }
                 // OnClick
                 button.onClick.AddListener(() => {
-                    weapon.Ammunition.Add(dice);
+                    weapon.AmmunitionSystem.Ammunition.Add(dice);
                     ResumeGame();
                 });
             }
@@ -276,7 +276,7 @@ public class UpgradeDisplay : MonoBehaviour {
         parentDices = new GameObject("DiceParent");
         parentDices.transform.SetParent(diceUpgradeUI.transform, false);
 
-        List<Dice> ammunition = new List<Dice>(weapon.Ammunition);
+        List<Dice> ammunition = new List<Dice>(weapon.AmmunitionSystem.Ammunition);
         int total = Mathf.Clamp(ammunition.Count, 1, 5);
 
         HashSet<int> selectedIndices = new HashSet<int>();
@@ -343,7 +343,7 @@ public class UpgradeDisplay : MonoBehaviour {
                     // Verify dices selected
                     if (selectedCount == requiredSelections) {
                         if (artifact != null) {
-                            Dice selectedDice = weapon.Ammunition[rng];
+                            Dice selectedDice = weapon.AmmunitionSystem.Ammunition[rng];
                             player.EquipArtifact(artifact, selectedDice.Faces[faceIndex]);
                             diceUpgradeUI.SetActive(false);
                             ResumeGame();

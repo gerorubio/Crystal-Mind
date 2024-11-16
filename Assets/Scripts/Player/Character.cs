@@ -10,7 +10,6 @@ public class Character : MonoBehaviour {
     private bool isGamePaused = false;
 
     // Base Stats
-
     private int currentHp;
     public int CurrentHp {
         get { return currentHp; }

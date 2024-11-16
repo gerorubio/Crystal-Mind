@@ -4,21 +4,39 @@ using UnityEngine.InputSystem;
 using System;
 
 public class PlayerController : MonoBehaviour {
+    // Input system
+    private PlayerInput playerInput;
+    // Store our controls
+    private InputAction moveAction;
+    private InputAction shootAction;
+    private InputAction reloadAction;
+    private InputAction aimAction;
+    private InputAction dashAction;
+    private InputAction spellCastAction;
+
     private Vector2 move;
     private Vector3 targetDirection = Vector3.zero;
     private Character character;
-
     private bool autoAim = false;
-
-    public event Action<Vector3> OnAutoAim;
 
     public Vector3 TargetDirection {
         get { return targetDirection; }
         private set { targetDirection = value; }
     }
 
-    // Check if the player is moving
-    public bool IsMoving => move.magnitude > 0.1f;
+    // Events
+    public event Action<Vector3> OnAutoAim;
+    public event Action OnShoot;
+
+    private void Awake() {
+        playerInput = GetComponent<PlayerInput>();
+        moveAction = playerInput.actions["Move"];
+        shootAction = playerInput.actions["Shoot"];
+        reloadAction = playerInput.actions["Reload"];
+        aimAction = playerInput.actions["Aim"];
+        dashAction = playerInput.actions["Dash"];
+        spellCastAction = playerInput.actions["Cast Spell"];
+    }
 
     void Start() {
         character = GetComponent<Character>();
@@ -31,23 +49,22 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         if (GameManager.GameIsPaused) return;
 
+        move = moveAction.ReadValue<Vector2>();
         MovePlayer();
+
+        if (aimAction.triggered) {
+            autoAim = !autoAim;
+        }
+
+        if(shootAction.ReadValue<float>() > 0) {
+            OnShoot?.Invoke();
+        }
+
         RotatePlayer();
     }
 
-    // Input Manager
-    public void OnMove(InputAction.CallbackContext context) {
-        move = context.ReadValue<Vector2>();
-    }
-
-    public void OnCombat(InputAction.CallbackContext context) {
-        if(context.performed) {
-            string controlPalth = context.control.path;
-            if (controlPalth.Equals("/Keyboard/space")) {
-                autoAim = !autoAim;
-            }
-        }
-    }
+    // Check if the player is moving
+    public bool IsMoving => move.magnitude > 0.1f;
 
     public void MovePlayer() {
         if (character == null) return; // Safety check
@@ -67,7 +84,7 @@ public class PlayerController : MonoBehaviour {
     public void RotatePlayer() {
         Vector3 targetPoint;
 
-        if(autoAim) {
+        if (autoAim) {
             targetPoint = GetClosestEnemy();
             OnAutoAim?.Invoke(Camera.main.WorldToScreenPoint(targetPoint));
         } else {
@@ -86,16 +103,16 @@ public class PlayerController : MonoBehaviour {
     private Vector3 GetMousePosition() {
         Vector3 targetPosition = Vector3.zero;
         // Create a ray from the camnera to the mouse position
-        Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //Create plane xz and y = 0
         Plane plane = new Plane(Vector3.up, Vector3.zero);
 
-        if(plane.Raycast(ray,out float distance)) {
+        if (plane.Raycast(ray, out float distance)) {
             targetPosition = ray.GetPoint(distance);
         }
 
         return targetPosition;
-           
+
     }
 
     private Vector3 GetClosestEnemy() {
@@ -109,7 +126,7 @@ public class PlayerController : MonoBehaviour {
         // Find all game objects tagged as "Enemy" in the scene
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        if(enemies.Length > 0) {
+        if (enemies.Length > 0) {
             foreach (GameObject enemy in enemies) {
                 // Calculate the direction vector from the current object to the enemy
                 Vector3 directionToTarget = enemy.transform.position - currentPosition;
@@ -117,7 +134,7 @@ public class PlayerController : MonoBehaviour {
                 // Calculate the squared distance to the enemy (no need for square root for comparison)
                 float dSqrToTarget = directionToTarget.sqrMagnitude;
 
-                if(dSqrToTarget < closestDistanceSqr) {
+                if (dSqrToTarget < closestDistanceSqr) {
                     closestDistanceSqr = dSqrToTarget;
                     bestPosition = enemy.transform.position;
                     targetPosition = bestPosition;

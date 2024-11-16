@@ -105,10 +105,10 @@ public class ArtifactSO : ScriptableObject {
                 // Heal 5 health points, but lose 2 random dice.
                 player.CurrentHp += 5;
                 for(int i = 0; i < 2; i++) {
-                    int randomDice = Random.Range(0, weapon.Ammunition.Count);
-                    Dice selectDice = weapon.Ammunition[randomDice];
+                    int randomDice = Random.Range(0, weapon.AmmunitionSystem.Ammunition.Count);
+                    Dice selectDice = weapon.AmmunitionSystem.Ammunition[randomDice];
 
-                    weapon.Ammunition.RemoveAt(randomDice);
+                    weapon.AmmunitionSystem.Ammunition.RemoveAt(randomDice);
                 }
                 break;
             case "Perfect Grip":

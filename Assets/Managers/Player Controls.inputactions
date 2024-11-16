@@ -1,5 +1,5 @@
 {
-    "name": "Input Manager",
+    "name": "Player Controls",
     "maps": [
         {
             "name": "Player",
@@ -15,9 +15,45 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Combat",
+                    "name": "Shoot",
                     "type": "Button",
-                    "id": "846e4480-5f5c-4fc7-8335-f0e2fc2bd497",
+                    "id": "3f2ca9d0-8f24-46fa-9669-62f1035bdeff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "8f3c1f8f-6915-4d82-9733-ff4e2450abd6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "0a717203-5284-4b70-85c6-56690e03f7f6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "92e971df-538d-49d3-bcdd-f8156b19f001",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cast Spell",
+                    "type": "Button",
+                    "id": "d47cfeaa-e0a1-4a9b-9e83-7d90503b7d97",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -82,56 +118,56 @@
                 },
                 {
                     "name": "",
-                    "id": "f0ae1a1c-83cb-4ad5-8a87-cb794e97e83a",
+                    "id": "8598ccc4-46f9-47de-a68d-9159559e1bec",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Combat",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "02a913f4-83d7-477b-a49a-481598ede778",
+                    "id": "53264bb0-f282-44a9-b1d2-1fc5d3e795a0",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Combat",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "73845b37-498e-4508-b2aa-5f1d81723835",
+                    "id": "b0fc6f74-11cd-4da3-b849-095a6e3be8aa",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Combat",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ebce74c9-58c8-4e64-a823-d6db6bd1b723",
+                    "id": "aa35685f-3aa8-4c42-8d28-a86264e69f4a",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Combat",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a11c2f1b-f9d4-462a-bfaf-7db41846ac62",
+                    "id": "72d6a969-5ed4-4aaf-a759-9b4043fdb771",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Combat",
+                    "action": "Cast Spell",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
