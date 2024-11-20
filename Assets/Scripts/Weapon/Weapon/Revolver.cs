@@ -7,7 +7,8 @@ public class Revolver : Weapon {
 
     protected override void Shoot() {
         // Roll dice and get the result face
-        Face face = ammunitionSystem.CurrentAmmunition[0].currentFace;
+        Dice dice = ammunitionSystem.CurrentAmmunition[0];
+        Face face = dice.currentFace;
         // Remove dice from ammo
         ammunitionSystem.CurrentAmmunition.RemoveAt(0);
 
@@ -27,6 +28,9 @@ public class Revolver : Weapon {
         Projectile projectile = bullet.GetComponent<Projectile>();
         // Initialize projectile
         projectile.InitProjectile(this, face);
+
+        // Called event so OnShoot artifacts trigger
+        TriggerOnShoot(dice, projectile);
             
         float force = projectile.Force;
 

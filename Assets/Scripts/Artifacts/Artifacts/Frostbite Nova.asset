@@ -13,17 +13,23 @@ MonoBehaviour:
   m_Name: Frostbite Nova
   m_EditorClassIdentifier: 
   artifactName: Frostbite Nova
+  enumArtifactName: 10
   effects:
   - When a frozen enemy dies, create an explosion that freezes nearby enemies.
   artWork: {fileID: 21300000, guid: 677c28c854a3bfd4eaae795f6e03ef20, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 1c1f97aecd461cd438b6a129d9d5d9c6, type: 2}
   onShoot: 0
   onEquip: 0
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 1
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

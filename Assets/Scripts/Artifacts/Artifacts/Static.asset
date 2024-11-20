@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Static
   m_EditorClassIdentifier: 
   artifactName: Static
+  enumArtifactName: 33
   effects:
   - Every 10 attacks generate a lightning bolt that deals area damage.
   - Increase fire rate by 10%
   artWork: {fileID: 21300000, guid: f8baa6d2c5d5ac04cbf53f1ec8133038, type: 3}
+  artifactEffect: {fileID: 11400000, guid: feee9252fff975b438d36f9c46e93f3f, type: 2}
   onShoot: 1
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
@@ -29,3 +31,6 @@ MonoBehaviour:
   onBleedingDamage: 0
   onDiceModified: 0
   onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

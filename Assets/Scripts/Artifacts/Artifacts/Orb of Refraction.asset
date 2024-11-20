@@ -13,19 +13,25 @@ MonoBehaviour:
   m_Name: Orb of Refraction
   m_EditorClassIdentifier: 
   artifactName: Orb of Refraction
+  enumArtifactName: 22
   effects:
   - An orb rotates around you, and whenever a shot passes through it, 2 additional
     projectiles are generated.
   - Increase fire rate 10%.
   artWork: {fileID: 21300000, guid: 6f5080c336e8b3446bbc1d60e9aa1bf6, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 899e4f81155cafe43b022341cccd1b09, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 0
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

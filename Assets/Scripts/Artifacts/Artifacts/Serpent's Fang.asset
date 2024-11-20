@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Serpent's Fang
   m_EditorClassIdentifier: 
   artifactName: Serpent's Fang
+  enumArtifactName: 29
   effects:
   - Applying poison deals an additional 10 damage.
   - Add 1 poison face to a dice.
   artWork: {fileID: 21300000, guid: 55ddb3dc47db3f441a6ab9654596937c, type: 3}
+  artifactEffect: {fileID: 11400000, guid: b6667701890483d48b3759cd05ccf34e, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0

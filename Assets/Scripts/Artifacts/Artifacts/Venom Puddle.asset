@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Venom Puddle
   m_EditorClassIdentifier: 
   artifactName: Venom Puddle
+  enumArtifactName: 37
   effects:
   - Poison has a 30% chance to not decrease.
   - Add 1 poison face to a dice.
   artWork: {fileID: 21300000, guid: a532eb2d4e403a642afd09454515948c, type: 3}
+  artifactEffect: {fileID: 11400000, guid: db03a3505d5b5214dbfa3620f4a193ae, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0

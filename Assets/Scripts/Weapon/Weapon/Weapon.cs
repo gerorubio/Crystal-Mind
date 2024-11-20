@@ -41,7 +41,7 @@ public abstract class Weapon : MonoBehaviour {
         set { knockback = value; }
     }
 
-    private float attackRange = 2f;
+    private float attackRange = 10f;
 
     // Ammunition System
     public int[] initialAmmunition = new int[6];
@@ -53,7 +53,7 @@ public abstract class Weapon : MonoBehaviour {
     public float AttackRange { get => attackRange; set => attackRange = value; }
 
     // UI Why is this here?
-    public DiceDisplay diceDisplay; // Reference to DiceDisplay script
+    private DiceDisplay diceDisplay; // Reference to DiceDisplay script
 
     // GameObjets
     //  Projectile source
@@ -63,11 +63,16 @@ public abstract class Weapon : MonoBehaviour {
 
     // Events
     public event Action<int> OnReload; // Reload event
+    public event Action<Weapon, Dice, Projectile> OnShoot; // Shoot event
 
     // METHODS
     protected virtual void Awake() {
         InitializeProjectileSource();
         InitializeAmmunitionSystem();
+    }
+
+    private void Start() {
+        diceDisplay = GameObject.Find("Canvas").GetComponent<DiceDisplay>();
     }
 
     protected virtual void Update() {
@@ -112,6 +117,15 @@ public abstract class Weapon : MonoBehaviour {
 
     protected abstract void Shoot(); // Abstract method for shooting, implemented in derived classes
 
+    protected void TriggerOnShoot(Dice dice, Projectile projectile) {
+        OnShoot?.Invoke(this, dice, projectile);
+    }
+
+    protected void ReloadHandler() {
+        OnReload?.Invoke(ammunitionSystem.RemainingAmmunitionValue);
+        StartCoroutine(ReloadRoutine());
+    }
+
     protected virtual IEnumerator ReloadRoutine() {
         isReloading = true;
         diceDisplay.StartRotatingDice();
@@ -134,6 +148,7 @@ public abstract class Weapon : MonoBehaviour {
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if (playerController != null) {
             playerController.OnShoot += ShootHandler;
+            playerController.OnReload += ReloadHandler;
         }
     }
 
@@ -143,6 +158,7 @@ public abstract class Weapon : MonoBehaviour {
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if(playerController != null) {
             playerController.OnShoot -= ShootHandler;
+            playerController.OnReload += ReloadHandler;
         }
     }
 

@@ -13,17 +13,23 @@ MonoBehaviour:
   m_Name: Pact
   m_EditorClassIdentifier: 
   artifactName: Pact
+  enumArtifactName: 23
   effects:
   - Heal 5 health points, but lose 2 random dice.
   artWork: {fileID: 21300000, guid: 459c6c46b96b1614eaf9baaf907dab60, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 8a044f3a95b555f40b8fd4a4bdcdcd5e, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 0
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

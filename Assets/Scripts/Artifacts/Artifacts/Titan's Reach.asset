@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Titan's Reach
   m_EditorClassIdentifier: 
   artifactName: Titan's Reach
+  enumArtifactName: 36
   effects:
   - Increase projectile size by 10%.
   - Increase knockback by 10%.
   artWork: {fileID: 21300000, guid: 9815dc3f15652af458bec54bd9f15d2e, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 04ab5919804878b4c800e8cd1da7bc8d, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
@@ -29,3 +31,6 @@ MonoBehaviour:
   onBleedingDamage: 0
   onDiceModified: 0
   onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

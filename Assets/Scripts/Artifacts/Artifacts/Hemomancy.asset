@@ -13,17 +13,23 @@ MonoBehaviour:
   m_Name: Hemomancy
   m_EditorClassIdentifier: 
   artifactName: Hemomancy
+  enumArtifactName: 13
   effects:
   - 3% chance to gain 1 health when using an active ability.
   artWork: {fileID: 21300000, guid: a17583d06ec38724e9cff797bec37a8c, type: 3}
+  artifactEffect: {fileID: 11400000, guid: d61ccfa33fea9474096fd0f0f0b3e326, type: 2}
   onShoot: 0
   onEquip: 0
   onReload: 0
   onSpellCast: 1
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 0
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

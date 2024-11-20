@@ -13,17 +13,23 @@ MonoBehaviour:
   m_Name: Life Conduit
   m_EditorClassIdentifier: 
   artifactName: Life Conduit
+  enumArtifactName: 17
   effects:
   - For every 500 enemies defeated, gain 1 health point.
   artWork: {fileID: 21300000, guid: bd4e45a4e88425744a33d337a9fa552e, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 206f68a318254604b80fbeb891a5e2a2, type: 2}
   onShoot: 0
   onEquip: 0
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 1
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

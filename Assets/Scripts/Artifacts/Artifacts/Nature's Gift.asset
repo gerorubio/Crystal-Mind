@@ -13,18 +13,23 @@ MonoBehaviour:
   m_Name: Nature's Gift
   m_EditorClassIdentifier: 
   artifactName: Nature's Gift
+  enumArtifactName: 20
   effects:
-  - When taking lethal damage, gain 1 health and create a shield that lasts for 3
-    seconds. (One-time use)
+  - When taking lethal damage, gain 1 health. (One-time use)
   artWork: {fileID: 21300000, guid: 83ed9cebfce694d469ea0600fe57585d, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 696d80b7c550c0545a427068a844815f, type: 2}
   onShoot: 0
   onEquip: 0
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 1
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 0
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Campfire
   m_EditorClassIdentifier: 
   artifactName: Campfire
+  enumArtifactName: 2
   effects:
   - Increases collection range by 20%.
   - Add 1 Alceanistum face to a dice.
   artWork: {fileID: 21300000, guid: 9a8984e0855800642bf4af4a640febf2, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 40bc669cd8b6b7e4c84de1878b34765f, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0

@@ -9,7 +9,8 @@ public enum EffectType {
     Bleed,
     Poison,
     Obsidian,
-    Alceanistum
+    Alceanistum,
+    Broken
 }
 
 public class Face {

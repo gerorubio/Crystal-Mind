@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Contagion
   m_EditorClassIdentifier: 
   artifactName: Contagion
+  enumArtifactName: 4
   effects:
   - When an enemy dies from poison, transfer the remaining poison to a nearby enemy.
   - Add 1 poison face to a dice.
   artWork: {fileID: 21300000, guid: d5349a4404878f847a51ffcf9a1135d6, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 22ff5458980865646821794e8705f3c1, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0

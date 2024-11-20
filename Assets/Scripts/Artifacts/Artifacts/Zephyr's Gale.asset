@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Zephyr's Gale
   m_EditorClassIdentifier: 
   artifactName: Zephyr's Gale
+  enumArtifactName: 40
   effects:
   - Increases movement speed by 10% for 5 seconds after casting spell.
   - Increase movement speed by 10%.
   artWork: {fileID: 21300000, guid: e53c2e1e1c858c9478c2941bf7010d36, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 7f7504cc552f8c7478656a5a8d94e043, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 1
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
@@ -29,3 +31,6 @@ MonoBehaviour:
   onBleedingDamage: 0
   onDiceModified: 0
   onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

@@ -13,18 +13,24 @@ MonoBehaviour:
   m_Name: Magic Reload
   m_EditorClassIdentifier: 
   artifactName: Magic Reload
+  enumArtifactName: 18
   effects:
   - Each time you use an spell, increase the reload speed of your next reload by
     25%.
   artWork: {fileID: 21300000, guid: 83fd17fed417c634fa0b4870156e082c, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 4da1851d633d0c44cb38bd17b53523d0, type: 2}
   onShoot: 0
   onEquip: 0
   onReload: 0
   onSpellCast: 1
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 0
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

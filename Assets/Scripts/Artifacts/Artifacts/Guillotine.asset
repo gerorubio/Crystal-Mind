@@ -13,17 +13,23 @@ MonoBehaviour:
   m_Name: Guillotine
   m_EditorClassIdentifier: 
   artifactName: Guillotine
+  enumArtifactName: 12
   effects:
   - 1% chance to deal 999 damage.
   artWork: {fileID: 21300000, guid: d427047e3eb64d443adffd04c051c390, type: 3}
+  artifactEffect: {fileID: 11400000, guid: dce1a6c622f6ae749bae54af0a4b1d86, type: 2}
   onShoot: 1
   onEquip: 0
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 0
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

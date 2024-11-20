@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   artifactName: Sniper
+  enumArtifactName: 31
   effects:
   - Increases attack damage based on the distance to the target.
   - Increase attack range by 20%.
   artWork: {fileID: 21300000, guid: a08dc00cdbf8d9f4bbbdad1b9e39b5e0, type: 3}
+  artifactEffect: {fileID: 11400000, guid: c08506d1c21e5e148a7c0f8efa7869a3, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
@@ -29,3 +31,6 @@ MonoBehaviour:
   onBleedingDamage: 0
   onDiceModified: 0
   onHit: 1
+  upgradeDice: 0
+  value: 0
+  effect: 0

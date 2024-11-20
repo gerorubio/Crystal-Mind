@@ -103,6 +103,7 @@ public class Character : MonoBehaviour {
         weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Weapon>();
 
         weapon.OnReload += IncreaseSpellPoints;
+        weapon.OnShoot += TriggerArtifactsOnShoot;
     }
 
     public void Update() {
@@ -161,8 +162,19 @@ public class Character : MonoBehaviour {
     }
 
     public void EquipArtifact(ArtifactSO artifact, Face face) {
-        artifact.Equip(this, weapon, face);
+        artifact.artifactEffect.OnEquip(this, weapon, face);
         OnEquipArtifact?.Invoke(artifact);
+    }
+
+    private void TriggerArtifactsOnShoot(Weapon weapon, Dice dice, Projectile projectile) {
+        foreach(ArtifactSO artifact in currentArtifacts) {
+            artifact.artifactEffect.OnShoot(null, weapon, dice, projectile);
+        }
+    }
+
+    // SPELLS
+    public void CastSpell() {
+
     }
 
     // PAUSE GAME

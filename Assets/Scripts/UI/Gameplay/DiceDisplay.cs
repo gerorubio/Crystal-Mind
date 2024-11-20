@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Rendering.Universal;
-using System.Linq;
 
 public class DiceDisplay : MonoBehaviour {
     public Transform diceParent;
@@ -13,18 +11,20 @@ public class DiceDisplay : MonoBehaviour {
     private Dictionary<string, GameObject> dicePrefabs = new Dictionary<string, GameObject>();
     private List<GameObject> displayedDice = new List<GameObject>();
 
+    // Dice values
+    public TMP_Text[] dicesValue;
     // Additional dice beyond 6
     public TMP_Text addictionalDiceText;
 
-    // Dice number display
-    public GameObject decalPrefab;
-    private List<GameObject> decals = new List<GameObject>();
+    //// Dice number display
+    //public GameObject decalPrefab;
+    //private List<GameObject> decals = new List<GameObject>();
 
-    public Texture2D baseTexture; // 1 digit
-    public Texture2D smallBaseTexture; // 2 digit
+    //public Texture2D baseTexture; // 1 digit
+    //public Texture2D smallBaseTexture; // 2 digit
 
-    private int width = 256;
-    private int height = 340;
+    //private int width = 256;
+    //private int height = 340;
 
     private bool isRotating = false;
 
@@ -55,7 +55,10 @@ public class DiceDisplay : MonoBehaviour {
         displayedDice.Clear();
 
         // Clear decals and instantiate new ones
-        ClearDecals();
+        //ClearDecals();
+
+        // Clear numbers
+        ClearDiceValues();
 
         float spacing = 100f;
         Vector3 startPosition;
@@ -83,64 +86,75 @@ public class DiceDisplay : MonoBehaviour {
 
                 // Decal texture
                 int diceValue = dice.currentFace.value;
-                
+
+                // Create new Text UI element
+                TMP_Text diceValueText = dicesValue[i];
+
+                diceValueText.text = diceValue.ToString();
+
+                diceValueText.GetComponent<RectTransform>().localPosition = new Vector3((startPosition + positionOffset).x, (startPosition + positionOffset).y, -36f);
                 // Create a new Texture2D instance for each decal
-                Texture2D extractedTexture = new Texture2D(width, height);
+                //Texture2D extractedTexture = new Texture2D(width, height);
 
-                int startX;
-                Color[] pixels = new Color[width * height];
+                //int startX;
+                //Color[] pixels = new Color[width * height];
 
-                if (diceValue >= 10) {
-                    int segmentedWidth = width / 2;
-                    int segmentedHeight = height;
+                //if (diceValue >= 10) {
+                //    int segmentedWidth = width / 2;
+                //    int segmentedHeight = height;
 
-                    int tens = diceValue / 10;
-                    int units = diceValue % 10;
+                //    int tens = diceValue / 10;
+                //    int units = diceValue % 10;
 
-                    startX = tens * segmentedWidth;
-                    int startX2 = units * segmentedWidth;
+                //    startX = tens * segmentedWidth;
+                //    int startX2 = units * segmentedWidth;
 
-                    Color[] pixelsTens = smallBaseTexture.GetPixels(startX, 0, segmentedWidth, segmentedHeight);
-                    Color[] pixelsUnits = smallBaseTexture.GetPixels(startX2, 0, segmentedWidth, segmentedHeight);
+                //    Color[] pixelsTens = smallBaseTexture.GetPixels(startX, 0, segmentedWidth, segmentedHeight);
+                //    Color[] pixelsUnits = smallBaseTexture.GetPixels(startX2, 0, segmentedWidth, segmentedHeight);
 
-                    // Copy pixelTens to left side of the pixels texture
-                    for (int y = 0; y < segmentedHeight; y++) {
-                        for (int x = 0; x < segmentedWidth; x++) {
-                            pixels[y * width + x] = pixelsTens[y * segmentedWidth + x];
-                        }
-                    }
+                //    // Copy pixelTens to left side of the pixels texture
+                //    for (int y = 0; y < segmentedHeight; y++) {
+                //        for (int x = 0; x < segmentedWidth; x++) {
+                //            pixels[y * width + x] = pixelsTens[y * segmentedWidth + x];
+                //        }
+                //    }
 
-                    // Copy pixelUnits to right side of the pixels texture
-                    for (int y = 0; y < segmentedHeight; y++) {
-                        for (int x = 0; x < segmentedWidth; x++) {
-                            pixels[y * width + x + segmentedWidth] = pixelsUnits[y * segmentedWidth + x];
-                        }
-                    }
+                //    // Copy pixelUnits to right side of the pixels texture
+                //    for (int y = 0; y < segmentedHeight; y++) {
+                //        for (int x = 0; x < segmentedWidth; x++) {
+                //            pixels[y * width + x + segmentedWidth] = pixelsUnits[y * segmentedWidth + x];
+                //        }
+                //    }
 
-                } else {
-                    startX = width * diceValue;
+                //} else {
+                //    startX = width * diceValue;
 
-                    // Extract pixels from the base texture
-                    pixels = baseTexture.GetPixels(startX, 0, width, height);
-                }
+                //    // Extract pixels from the base texture
+                //    pixels = baseTexture.GetPixels(startX, 0, width, height);
+                //}
 
-                extractedTexture.SetPixels(pixels);
-                extractedTexture.Apply();
+                //extractedTexture.SetPixels(pixels);
+                //extractedTexture.Apply();
 
-                // Create a new decal instance for each dice
-                GameObject newDecal = Instantiate(decalPrefab, diceParent);
-                Material decalMaterial = newDecal.GetComponent<DecalProjector>().material;
+                //// Create a new decal instance for each dice
+                //GameObject newDecal = Instantiate(decalPrefab, diceParent);
+                //Material decalMaterial = newDecal.GetComponent<DecalProjector>().material;
 
-                // Create a unique material instance and assign the extracted texture
-                Material uniqueDecalMaterial = new Material(decalMaterial);
-                uniqueDecalMaterial.SetTexture("_number", extractedTexture);
-                newDecal.GetComponent<DecalProjector>().material = uniqueDecalMaterial;
+                //// Create a unique material instance and assign the extracted texture
+                //Material uniqueDecalMaterial = new Material(decalMaterial);
+                //uniqueDecalMaterial.SetTexture("_number", extractedTexture);
+                //newDecal.GetComponent<DecalProjector>().material = uniqueDecalMaterial;
 
-                // Setting the position of the decal to be in front of the dice
-                newDecal.transform.localPosition = new Vector3(newDice.transform.localPosition.x, newDice.transform.localPosition.y, -60f);
+                //newDecal.transform.SetParent(newDice.transform);
 
-                // Store the new decal
-                decals.Add(newDecal); // Add new decal to the list
+                //// Setting the position of the decal to be in front of the dice
+                //newDecal.transform.localPosition = new Vector3(0, 0, -60f);
+                ////newDecal.transform.localPosition = new Vector3(newDice.transform.localPosition.x - 10f, newDice.transform.localPosition.y - 16f, -60f);
+
+                //// Store the new decal
+                //decals.Add(newDecal); // Add new decal to the list
+
+
             }
             i++;
         }
@@ -154,11 +168,18 @@ public class DiceDisplay : MonoBehaviour {
 
     public void StartRotatingDice() {
         isRotating = true;
+        foreach (var text in dicesValue) {
+            text.enabled = false;
+        }
+        
         StartCoroutine(RotateDice());
     }
 
     public void StopRotatingDice() {
         isRotating = false;
+        foreach (var text in dicesValue) {
+            text.enabled = true;
+        }
     }
 
     private IEnumerator RotateDice() {
@@ -176,10 +197,16 @@ public class DiceDisplay : MonoBehaviour {
         }
     }
 
-    private void ClearDecals() {
-        foreach (var decal in decals) {
-            Destroy(decal); // Destroy each decal GameObject
+    //private void ClearDecals() {
+    //    foreach (var decal in decals) {
+    //        Destroy(decal); // Destroy each decal GameObject
+    //    }
+    //    decals.Clear(); // Clear the list after destroying
+    //}
+
+    private void ClearDiceValues() {
+        foreach (var text in dicesValue) {
+            text.text = ""; // Empry string
         }
-        decals.Clear(); // Clear the list after destroying
     }
 }

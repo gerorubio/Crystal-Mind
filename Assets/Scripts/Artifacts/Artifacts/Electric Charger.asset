@@ -13,18 +13,24 @@ MonoBehaviour:
   m_Name: Electric Charger
   m_EditorClassIdentifier: 
   artifactName: Electric Charger
+  enumArtifactName: 8
   effects:
   - Deal 20 damage to all enemies when you reload.
   - Increase reload speed by 10%.
   artWork: {fileID: 21300000, guid: 8bb334701fdc72e47a9242a97d0be167, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 05cd4fe5c57b0c0468df42bbd02895de, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 1
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
   onEnemyDeath: 0
   onBleedingDamage: 0
   onDiceModified: 0
+  onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

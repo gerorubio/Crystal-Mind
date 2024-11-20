@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: Seeing Double
   m_EditorClassIdentifier: 
   artifactName: Seeing Double
+  enumArtifactName: 28
   effects:
   - Each time you shoot a die, there is a 10% chance of obtaining an additional die
     for one use.
   - Increase fire rate by 10%.
   artWork: {fileID: 21300000, guid: fcc143ef6ce77dc47accf9c5a95ee7ea, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 7cd65139eecb5eb429fed026a0f27556, type: 2}
   onShoot: 1
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
@@ -30,3 +32,6 @@ MonoBehaviour:
   onBleedingDamage: 0
   onDiceModified: 0
   onHit: 0
+  upgradeDice: 0
+  value: 0
+  effect: 0

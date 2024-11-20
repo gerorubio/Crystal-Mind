@@ -10,4 +10,8 @@ public class SpellSO : ScriptableObject {
 
     public int cost;
 
+    public void Cast() {
+
+    }
+
 }

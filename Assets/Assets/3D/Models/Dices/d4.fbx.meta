@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 792fbee34a4a44d489b40790dc408b9d
+guid: 37e677f5f4f9fc8438c1e9b0c04fa588
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -13,22 +13,22 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: d4_base
-    second: {fileID: 2800000, guid: 45df54a64c074b84989eeb905b9581c9, type: 3}
+    second: {fileID: 2800000, guid: b0fbc85837067f5429c7d70b873104e0, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: d4_metal
-    second: {fileID: 2800000, guid: 2c191d23ae43aba44bd6d0711c1bae37, type: 3}
+    second: {fileID: 2800000, guid: 2af91de785dec844b9f9d74874b9f913, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: d4_nor
-    second: {fileID: 2800000, guid: e494c3cdbb97cc247bccab42956e05bf, type: 3}
+    second: {fileID: 2800000, guid: 0bb961f452f97b44f8d18f61312142b8, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: d4_rough
-    second: {fileID: 2800000, guid: a1eaf3fbe6851ed4abdd310ea0fc201a, type: 3}
+    second: {fileID: 2800000, guid: c264d91585707844ea5b8a1d324b4858, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -115,7 +115,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 7
+    globalScale: 700
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

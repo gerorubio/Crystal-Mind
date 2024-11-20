@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Hollow Recharge
   m_EditorClassIdentifier: 
   artifactName: Hollow Recharge
+  enumArtifactName: 14
   effects:
   - Reloading an empty cartridge grants X charge to the active ability, where X is
     the number of dice.
   artWork: {fileID: 21300000, guid: 9152ab6250dfa3043b2973feddfa9b01, type: 3}
+  artifactEffect: {fileID: 11400000, guid: 887034656432f0345af50448b8d5b6a5, type: 2}
   onShoot: 0
   onEquip: 0
   onReload: 1
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0

@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Blood Catalyst
   m_EditorClassIdentifier: 
   artifactName: Blood Catalyst
+  enumArtifactName: 1
   effects:
   - Increase spell counter by 1 each time you deal bleeding damage.
   - Add 1 bleeding face to a dice.
   artWork: {fileID: 21300000, guid: 0b64d44ec44bb5442ad6f98153f86664, type: 3}
+  artifactEffect: {fileID: 11400000, guid: a44f08e46c0a5eb4081d0fbe3f5d153f, type: 2}
   onShoot: 0
   onEquip: 1
   onReload: 0
   onSpellCast: 0
-  OnDamageTaken: 0
+  onDamageTaken: 0
   onDash: 0
   onAmmo: 0
   onDeath: 0
