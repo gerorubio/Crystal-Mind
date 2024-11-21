@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     public event Action<Vector3> OnAutoAim;
     public event Action OnShoot;
     public event Action OnReload;
+    public event Action OnSpellCast;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
@@ -63,6 +64,10 @@ public class PlayerController : MonoBehaviour {
 
         if (reloadAction.ReadValue<float>() > 0) {
             OnReload?.Invoke();
+        }
+
+        if(spellCastAction.ReadValue<float>() > 0) {
+            OnSpellCast?.Invoke();
         }
 
         RotatePlayer();

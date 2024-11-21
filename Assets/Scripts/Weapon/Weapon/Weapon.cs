@@ -122,8 +122,10 @@ public abstract class Weapon : MonoBehaviour {
     }
 
     protected void ReloadHandler() {
-        OnReload?.Invoke(ammunitionSystem.RemainingAmmunitionValue);
-        StartCoroutine(ReloadRoutine());
+        if(!isReloading) {
+            OnReload?.Invoke(ammunitionSystem.RemainingAmmunitionValue);
+            StartCoroutine(ReloadRoutine());
+        }
     }
 
     protected virtual IEnumerator ReloadRoutine() {

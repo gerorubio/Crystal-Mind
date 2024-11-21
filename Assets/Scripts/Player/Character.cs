@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Character : MonoBehaviour {
     public CharacterSO characterSO;
@@ -46,7 +47,7 @@ public class Character : MonoBehaviour {
         set { currentCriticalChance = value; }
     }
 
-    private float currentXpCollectionRange = 5f;
+    private float currentXpCollectionRange = 10f;
     public float CurrentXpCollectionRange {
         get { return currentXpCollectionRange; }
         set { currentXpCollectionRange = value; }
@@ -153,6 +154,9 @@ public class Character : MonoBehaviour {
     }
 
     private void IncreaseSpellPoints(int value) {
+        Debug.Log(value);
+        Debug.Log(currentSpellPoints);
+        Debug.Log(currentSpellPoints + value);
         currentSpellPoints = Mathf.Clamp(currentSpellPoints + value, 0, currentSpell.cost);
         OnIncreaseSpellPoints?.Invoke(currentSpellPoints);
     }
@@ -174,18 +178,34 @@ public class Character : MonoBehaviour {
 
     // SPELLS
     public void CastSpell() {
-
+        if (currentSpell != null) {
+            if(currentSpellPoints == currentSpell.cost) {
+                currentSpellPoints = 0;
+                currentSpell.Cast();
+                OnEquipSpell?.Invoke(currentSpell, currentSpellPoints);
+            }
+        }
     }
 
     // PAUSE GAME
     private void OnEnable() {
         GameManager.OnGamePaused += HandleGamePaused;
         GameManager.OnGameResumed += HandleGameResumed;
+
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null) {
+            playerController.OnSpellCast+= CastSpell;
+        }
     }
 
     private void OnDisable() {
         GameManager.OnGamePaused -= HandleGamePaused;
         GameManager.OnGameResumed -= HandleGameResumed;
+
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null) {
+            playerController.OnSpellCast += CastSpell;
+        }
     }
 
     private void HandleGamePaused() {
