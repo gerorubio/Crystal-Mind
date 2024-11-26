@@ -22,18 +22,21 @@ public class VolumeSettings : MonoBehaviour {
 
     public void SetMasterVolume() {
         float volume = masterSlider.value;
+        volume = Mathf.Max(0.0001f, volume);
         audioMixer.SetFloat("masterVolume", Mathf.Log10(volume) * 20);
 
         PlayerPrefs.SetFloat("masterVolume", volume);
     }
     public void SetMusicVolume() {
         float volume = musicSlider.value;
+        volume = Mathf.Max(0.0001f, volume);
         audioMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
 
         PlayerPrefs.SetFloat("musicVolume", volume);
     }
     public void SetEffectsVolume() {
         float volume = effectsSlider.value;
+        volume = Mathf.Max(0.0001f, volume);
         audioMixer.SetFloat("effectsVolume", Mathf.Log10(volume) * 20);
 
         PlayerPrefs.SetFloat("effectsVolume", volume);

@@ -109,10 +109,6 @@ public class Character : MonoBehaviour {
 
     public void Update() {
         if (isGamePaused) return;
-
-        if (Input.GetMouseButtonDown(0)) {
-            GainXP(1);
-        }
     }
 
     void InitializeCharacter() {

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Color in text
+//TMP_TextInfo
+
 public class ArtifactDisplay : MonoBehaviour {
     private Character character;
 

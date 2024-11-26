@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 9200334641138975830}
   - component: {fileID: 3732228221856507625}
   - component: {fileID: 2805099061746183107}
+  - component: {fileID: 2500035825264918852}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,5 +104,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 4.5176506, z: 1}
+  m_Center: {x: 0, y: 1.7588253, z: 0}
+--- !u!114 &2500035825264918852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549680139748888862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9159c58f3526b4e4580dca7780fb440b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 4e1c264767a9daa49a1c82e01401d662, type: 2}
+  currentHp: 0
+  alceanistum: {fileID: 2299254603163985469, guid: 710f48654a37f1a4f9c90b7d9354b3de,
+    type: 3}

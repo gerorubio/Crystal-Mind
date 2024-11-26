@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3587517848990194081}
   - component: {fileID: 7077885535940372024}
   - component: {fileID: 8127283972321657887}
-  - component: {fileID: 4753672822651741726}
+  - component: {fileID: -9158257242215146593}
+  - component: {fileID: 7625961163174375995}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +85,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4753672822651741726
-SphereCollider:
+--- !u!114 &-9158257242215146593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914525862941215115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9159c58f3526b4e4580dca7780fb440b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 61032b77036695d4098d9e5549c68e6f, type: 2}
+  currentHp: 0
+  alceanistum: {fileID: 2299254603163985469, guid: 710f48654a37f1a4f9c90b7d9354b3de,
+    type: 3}
+--- !u!136 &7625961163174375995
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,6 +119,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Height: 4.393566
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.6967831, z: 0}

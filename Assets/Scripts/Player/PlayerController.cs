@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Events
-    public event Action<Vector3> OnAutoAim;
+    public event Action OnAutoAim;
     public event Action OnShoot;
     public event Action OnReload;
     public event Action OnSpellCast;
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour {
         MovePlayer();
 
         if (aimAction.triggered) {
+            OnAutoAim?.Invoke();
             autoAim = !autoAim;
         }
 
@@ -96,7 +97,6 @@ public class PlayerController : MonoBehaviour {
 
         if (autoAim) {
             targetPoint = GetClosestEnemy();
-            OnAutoAim?.Invoke(Camera.main.WorldToScreenPoint(targetPoint));
         } else {
             targetPoint = GetMousePosition();
         }
@@ -106,8 +106,11 @@ public class PlayerController : MonoBehaviour {
         // Only rotate on y
         directionToMouse.y = 0;
 
-        Quaternion desiredRotation = Quaternion.LookRotation(directionToMouse);
-        transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.9f);
+        if (directionToMouse.sqrMagnitude > 0) {
+            Quaternion desiredRotation = Quaternion.LookRotation(directionToMouse);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, 0.9f);
+        }
+        
     }
 
     private Vector3 GetMousePosition() {
@@ -122,10 +125,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         return targetPosition;
-
     }
 
-    private Vector3 GetClosestEnemy() {
+    public Vector3 GetClosestEnemy() {
         Vector3 targetPosition = Vector3.zero;
         Vector3 currentPosition = transform.position;
 
@@ -154,7 +156,6 @@ public class PlayerController : MonoBehaviour {
         } else {
             targetPosition = GetMousePosition();
         }
-
         return targetPosition;
     }
 }

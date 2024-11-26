@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Alceanistum : MonoBehaviour {
 
-    private void OnCollisionEnter(Collision collision) {
-        Debug.Log("Collision with " + collision.gameObject.name);
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log("Collision with " + other.gameObject.name);
 
-        if (collision.gameObject.CompareTag("Player")) {
-            Character player =  collision.gameObject.GetComponent<Character>();
+        if (other.gameObject.CompareTag("Player")) {
+            Character player = other.gameObject.GetComponent<Character>();
             player.GainXP(1);
             Destroy(gameObject);
         }
