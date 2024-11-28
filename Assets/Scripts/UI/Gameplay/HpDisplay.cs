@@ -9,19 +9,16 @@ public class HpDisplay : MonoBehaviour {
     public Sprite heart;
 
     void Start() {
-        Debug.Log("HpDisplay Start");
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
 
         if (player == null) {
             Debug.LogError("Player not found in scene");
         } else {
             player.OnHpChanged += UpgradeDisplay;
-            Debug.Log(player.CurrentHp);
         }
     }
 
     private void UpgradeDisplay(int currentHp) {
-        Debug.Log("HpDisplayHpDisplay");
         for (int i = 0; i < currentHp; i++) {
             GameObject heartGO = new GameObject("Heart");
             Image heartImage = heartGO.AddComponent<Image>();

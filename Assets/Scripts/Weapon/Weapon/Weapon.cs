@@ -9,39 +9,16 @@ public abstract class Weapon : MonoBehaviour {
     protected bool isReloading = false;
 
     // Stats
-    protected float reloadTime = 2f;
-    public float ReloadTime {
-        get { return reloadTime; }
-        set { reloadTime = value; }
-    }
+    public float ReloadTime { get; set; } = 2f;
+    public float FireRate { get; set; } = 0.5f;
+    public float NextFireTime { get; set; } = 0f;
+    public bool Piercing { get; set; } = false;
+    public float ProjectileSize { get; set; }
+    public float Knockback { get; set; }
+    public float AttackRange { get; set; } = 10f;
 
-    protected float fireRate = 0.5f;
-    public float FireRate {
-        get { return fireRate; }
-        set { fireRate = value; }
-    }
 
     protected float nextFiretime = 0f;
-
-    protected bool piercing = false;
-    public bool Piercing {
-        get { return piercing; }
-        set { piercing = value; }
-    }
-
-    protected float projectileSize;
-    public float ProjectileSize {
-        get { return projectileSize; }
-        set { projectileSize = value; }
-    }
-
-    protected float knockback;
-    public float Knockback {
-        get { return knockback; }
-        set { knockback = value; }
-    }
-
-    private float attackRange = 10f;
 
     // Ammunition System
     public int[] initialAmmunition = new int[6];
@@ -49,8 +26,6 @@ public abstract class Weapon : MonoBehaviour {
     public AmmunitionSystem AmmunitionSystem {
         get { return ammunitionSystem; }
     }
-
-    public float AttackRange { get => attackRange; set => attackRange = value; }
 
     // UI Why is this here?
     private DiceDisplay diceDisplay; // Reference to DiceDisplay script
@@ -107,7 +82,7 @@ public abstract class Weapon : MonoBehaviour {
         if (ammunitionSystem.CurrentAmmunition.Count > 0) {
             if (Time.time >= nextFiretime) {
                 Shoot();
-                nextFiretime = Time.time + fireRate;
+                nextFiretime = Time.time + FireRate;
             }
         } else if(!isReloading) {
             StartCoroutine(ReloadRoutine());
@@ -133,7 +108,14 @@ public abstract class Weapon : MonoBehaviour {
         diceDisplay.StartRotatingDice();
         ammunitionSystem.Reload();
 
-        yield return new WaitForSeconds(reloadTime);
+        // Audio
+        DicesSFXHandler.Instance?.ShuffleDice();
+
+        yield return new WaitForSeconds(ReloadTime);
+
+        // Audio
+        DicesSFXHandler.Instance?.StopShuffleDice();
+        DicesSFXHandler.Instance?.RollDice(ammunitionSystem.Ammunition);
 
         isReloading = false;
         diceDisplay.StopRotatingDice();
