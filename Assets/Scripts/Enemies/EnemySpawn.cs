@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour {
     public GameObject[] enemies;
+
     // Time between spawns
     private float spawnInterval;
+    [SerializeField]
+    private float initialSpawnInterval = 5f; // Initial spawn interval in seconds
+    [SerializeField]
+    private float halfLife = 30f; // Time for the spawn interval to halve
+
     // Total time
     private float elapsedTime = 0f;
     // Current phase
@@ -30,6 +36,9 @@ public class EnemySpawn : MonoBehaviour {
     private void Update() {
         elapsedTime += Time.deltaTime;
 
+        // Update spawnInterval using exponential decay
+        spawnInterval = initialSpawnInterval * Mathf.Pow(0.5f, elapsedTime / halfLife);
+
         if (elapsedTime < phaseDuration[0]) {
             currentPhase = 1; // Enemy 1
         } else if (elapsedTime < phaseDuration[0] + phaseDuration[1]) {
@@ -51,7 +60,7 @@ public class EnemySpawn : MonoBehaviour {
     private void SpawnEnemy() {
         GameObject enemyToSpawn = null;
 
-        switch(currentPhase) {
+        switch (currentPhase) {
             case 1:
                 enemyToSpawn = enemies[0];
                 break;
@@ -68,12 +77,6 @@ public class EnemySpawn : MonoBehaviour {
 
         if (enemyToSpawn != null) {
             // Get position to spawn in a donut shape
-            // r = radius      Inner circle
-            // s = spread      Outer circle
-            // a ∈ [0,2π)     Uniform distribution
-            // b ∈ (r,s)      Nromal distribution
-            // x = b * cos(a)
-            // y = a * sin(b)
             float a = Random.Range(0, 2f * Mathf.PI);
             float b = GenerateGaussian(r, s);
 

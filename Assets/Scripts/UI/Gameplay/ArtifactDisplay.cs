@@ -50,10 +50,10 @@ public class ArtifactDisplay : MonoBehaviour {
             artifactTransform.SetParent(parentArtifact.transform, false);
 
             // Set width and height
-            artifactTransform.sizeDelta = new Vector2(30, 30);
+            artifactTransform.sizeDelta = new Vector2(40, 40);
 
-            int row = i % maxArtifactsPerColumn;
-            int column = i / maxArtifactsPerColumn;
+            int row = i / maxArtifactsPerColumn;
+            int column = i % maxArtifactsPerColumn;
 
             float xPosition = column * horizontalOffset;
             float yPosition = -row * (30 + verticalSpacing);

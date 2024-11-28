@@ -11,68 +11,24 @@ public class Character : MonoBehaviour {
     private bool isGamePaused = false;
 
     // Base Stats
-    private int currentHp;
-    public int CurrentHp {
-        get { return currentHp; }
-        set { currentHp = value; }
-    }
-
-    private float currentReloadSpeed;
-    public float CurrentReloadSpeed {
-        get { return currentReloadSpeed; }
-        set { currentReloadSpeed = value; }
-    }
-
-    private float currentFireRate;
-    public float CurrentFireRate {
-        get { return currentFireRate; }
-        set { currentFireRate = value; }
-    }
-
-    private float currentMovementSpeed;
-    public float CurrentMovementSpeed {
-        get { return currentMovementSpeed; }
-        set { currentMovementSpeed = value; }
-    }
-
-    private float currentAttackRange;
-    public float CurrentAttackRange {
-        get { return currentAttackRange; }
-        set { currentAttackRange = value; }
-    }
-
-    private float currentCriticalChance = 0f;
-    public float CurrentCriticalChance {
-        get { return currentCriticalChance; }
-        set { currentCriticalChance = value; }
-    }
-
-    private float currentXpCollectionRange = 10f;
-    public float CurrentXpCollectionRange {
-        get { return currentXpCollectionRange; }
-        set { currentXpCollectionRange = value; }
-    }
+    public int CurrentHp { get; set; }
+    public float CurrentReloadSpeed { get; set; }
+    public float CurrentFireRate { get; set; }
+    public float CurrentMovementSpeed { get; set; }
+    public float CurrentAttackRange { get; set; }
+    public float CurrentCriticalChance { get; set; } = 0f;
+    public float CurrentXpCollectionRange { get; set; } = 5f;
 
     // Weapon
     private Weapon weapon;
+
     // Artifacts
-    private List<ArtifactSO> currentArtifacts = new List<ArtifactSO>();
-    public List<ArtifactSO> CurrentArtifacts {
-        get { return currentArtifacts; }
-    }
+    private List<ArtifactSO> CurrentArtifacts { get; } = new List<ArtifactSO>();
 
     // Spell
-    private SpellSO currentSpell;
-    public SpellSO CurrentSpell {
-        get { return currentSpell; }
-        set { currentSpell = value; }
-    }
+    public SpellSO CurrentSpell { get; set; }
 
-    private int currentSpellPoints;
-    public int CurrentSpellPoints {
-        get { return currentSpellPoints; }
-        set { currentSpellPoints = value; }
-    }
+    public int CurrentSpellPoints {  get; set; }
 
     // XP Level System
     private int currentLevel = 1;
@@ -85,9 +41,10 @@ public class Character : MonoBehaviour {
     public event Action<SpellSO, int> OnEquipSpell; // currentSpell, currentSpellPoints
     public event Action<int> OnIncreaseSpellPoints; // currentSpell, currentSpellPoints
     public event Action<ArtifactSO> OnEquipArtifact; // artifact
+    public event Action<int> OnHpChanged;
 
     // Getters and Setters
-    public float MovementSpeed => currentMovementSpeed;
+    public float MovementSpeed => CurrentMovementSpeed;
 
     void Awake() {
         if (characterSO == null) {
@@ -98,8 +55,9 @@ public class Character : MonoBehaviour {
     }
 
     void Start() {
-        OnEquipSpell?.Invoke(currentSpell, currentSpellPoints);
-        OnEquipArtifact?.Invoke(currentArtifacts.First());
+        OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
+        OnEquipArtifact?.Invoke(CurrentArtifacts.First());
+        OnHpChanged?.Invoke(CurrentHp);
 
         weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Weapon>();
 
@@ -112,21 +70,21 @@ public class Character : MonoBehaviour {
     }
 
     void InitializeCharacter() {
-        currentHp = characterSO.hp;
-        currentReloadSpeed = characterSO.reloadSpeed;
-        currentFireRate = characterSO.fireRate;
-        currentMovementSpeed = characterSO.movementSpeed;
-        currentAttackRange = characterSO.attackRange;
+        CurrentHp = characterSO.hp;
+        CurrentReloadSpeed = characterSO.reloadSpeed;
+        CurrentFireRate = characterSO.fireRate;
+        CurrentMovementSpeed = characterSO.movementSpeed;
+        CurrentAttackRange = characterSO.attackRange;
 
-        currentArtifacts.Add(characterSO.initialArtifact);
+        CurrentArtifacts.Add(characterSO.initialArtifact);
 
-        currentSpell = characterSO.initialSpell;
+        CurrentSpell = characterSO.initialSpell;
 
-        if (currentSpell == null) {
+        if (CurrentSpell == null) {
             Debug.LogWarning("Initial spell is not set in CharacterSO");
         }
 
-        currentSpellPoints = 0;
+        CurrentSpellPoints = 0;
     }
 
     public void GainXP(int xp) {
@@ -150,15 +108,12 @@ public class Character : MonoBehaviour {
     }
 
     private void IncreaseSpellPoints(int value) {
-        Debug.Log(value);
-        Debug.Log(currentSpellPoints);
-        Debug.Log(currentSpellPoints + value);
-        currentSpellPoints = Mathf.Clamp(currentSpellPoints + value, 0, currentSpell.cost);
-        OnIncreaseSpellPoints?.Invoke(currentSpellPoints);
+        CurrentSpellPoints = Mathf.Clamp(CurrentSpellPoints + value, 0, CurrentSpell.cost);
+        OnIncreaseSpellPoints?.Invoke(CurrentSpellPoints);
     }
 
     public void EquipSpell() {
-        OnEquipSpell?.Invoke(currentSpell, currentSpellPoints);
+        OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
     }
 
     public void EquipArtifact(ArtifactSO artifact, Face face) {
@@ -167,18 +122,18 @@ public class Character : MonoBehaviour {
     }
 
     private void TriggerArtifactsOnShoot(Weapon weapon, Dice dice, Projectile projectile) {
-        foreach(ArtifactSO artifact in currentArtifacts) {
+        foreach(ArtifactSO artifact in CurrentArtifacts) {
             artifact.artifactEffect.OnShoot(null, weapon, dice, projectile);
         }
     }
 
     // SPELLS
     public void CastSpell() {
-        if (currentSpell != null) {
-            if(currentSpellPoints == currentSpell.cost) {
-                currentSpellPoints = 0;
-                currentSpell.Cast();
-                OnEquipSpell?.Invoke(currentSpell, currentSpellPoints);
+        if (CurrentSpell != null) {
+            if(CurrentSpellPoints == CurrentSpell.cost) {
+                CurrentSpellPoints = 0;
+                CurrentSpell.Cast();
+                OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
             }
         }
     }

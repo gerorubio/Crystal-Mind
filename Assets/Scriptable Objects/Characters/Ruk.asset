@@ -24,6 +24,8 @@ MonoBehaviour:
   d20: 0
   initialSpell: {fileID: 11400000, guid: 20b02e0db4bbf2244ba0db30dd059282, type: 2}
   initialArtifact: {fileID: 11400000, guid: 1f34121baa230684c9bdfe60cae88a14, type: 2}
-  hp: 3
+  hp: 10
   reloadSpeed: 2
   fireRate: 2
+  movementSpeed: 10
+  attackRange: 10
