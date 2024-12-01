@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : PoolableObject {
     // Stats
     private float damage;
     private EffectType effect;
@@ -22,13 +22,23 @@ public class Projectile : MonoBehaviour {
     public float Force { get => force; set => force = value; }
     public float Range { get => range; set => range = value; }
 
-    private void FixedUpdate() {
-        if (Vector3.Distance(transform.position, endPosition) <= 0.1f) {
-            Destroy(gameObject);
-        }
+    protected Rigidbody rigidBody;
+
+    private void Awake() {
+        rigidBody = GetComponent<Rigidbody>();
     }
 
+    public override void OnDisable() {
+        base.OnDisable();
 
+        rigidBody.velocity = Vector3.zero;
+    }
+
+    private void FixedUpdate() {
+        if (Vector3.Distance(transform.position, endPosition) <= 0.1f) {
+            Disable();
+        }
+    }
 
     public void InitProjectile(Weapon weapon, Face face) {
         damage = face.value;
@@ -43,13 +53,15 @@ public class Projectile : MonoBehaviour {
         endPosition = transform.position + transform.forward * range;
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Enemy")) {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.TakeDamage(damage);
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Enemy")) {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            if (enemy != null) {
+                enemy.TakeDamage(damage);
+            }
 
-            if(!isPiercing) {
-                Destroy(gameObject);
+            if (!isPiercing) {
+                Disable();
             }
         }
     }

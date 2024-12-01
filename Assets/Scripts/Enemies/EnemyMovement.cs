@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +7,13 @@ public class EnemyMovement : MonoBehaviour {
     private Transform target;
     public float updateSpeed = 0.1f; // How frequently to recalculate path
 
-    private UnityEngine.AI.NavMeshAgent agent;
+    private NavMeshAgent agent;
+
+    [SerializeField]
+    private Animator animator;
+    // States
+    private const string isMoving = "IsMoving";
+    private const string attack = "Attack";
 
     private void Awake() {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -16,7 +21,18 @@ public class EnemyMovement : MonoBehaviour {
     }
     
     private void Start () {
+        animator.SetBool(isMoving, agent.velocity.magnitude > 0.01f);
         StartCoroutine(FollowTarget());
+    }
+
+    private void Update() {
+        animator.SetBool(isMoving, agent.velocity.magnitude > 0.01f);
+    }
+
+    private void OnDestroy() {
+        if (animator != null) {
+            animator = null;
+        }
     }
 
     private IEnumerator FollowTarget() {

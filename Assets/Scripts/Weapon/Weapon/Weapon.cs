@@ -36,6 +36,9 @@ public abstract class Weapon : MonoBehaviour {
     // Parent projectiles
     protected GameObject parentProjectiles;
 
+    // Audio Source
+    protected AudioSource audioSource;
+
     // Events
     public event Action<int> OnReload; // Reload event
     public event Action<Weapon, Dice, Projectile> OnShoot; // Shoot event
@@ -48,6 +51,8 @@ public abstract class Weapon : MonoBehaviour {
 
     private void Start() {
         diceDisplay = GameObject.Find("Canvas").GetComponent<DiceDisplay>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     protected virtual void Update() {
