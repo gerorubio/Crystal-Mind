@@ -11,8 +11,7 @@ public class Revolver : Weapon {
 
     protected override void Awake() {
         base.Awake();
-        bulletPool = ObjectPool.CreateInstance(projectile, 10);
-
+        bulletPool = ObjectPool.CreateInstance(projectile, 50);
     }
 
     protected override void Shoot() {
@@ -31,12 +30,6 @@ public class Revolver : Weapon {
             float playerYRotation = transform.parent.eulerAngles.y;
             Quaternion zRotation = Quaternion.Euler(0f, playerYRotation, 0f);
 
-            //// Instantiate the bullet
-            //GameObject bullet = Instantiate(
-            //    bulletPrefab,
-            //    projectileSource.transform.position,
-            //    zRotation
-            //);
             // Position
             instance.transform.position = projectileSource.transform.position;
             instance.transform.rotation = zRotation;

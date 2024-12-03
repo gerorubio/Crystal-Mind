@@ -53,10 +53,30 @@ public class Projectile : PoolableObject {
         endPosition = transform.position + transform.forward * range;
     }
 
+    private void ApplyEffect(Enemy enemy) {
+        switch(effect) {
+            case EffectType.Burned:
+                enemy.ApplyBurnedEffect();
+                break;
+            case EffectType.Frozen:
+                enemy.ApplyFrozenEffect();
+                break;
+            case EffectType.Bleed:
+                enemy.ApplyBleedEffect((int)Mathf.Floor(damage));
+                break;
+            case EffectType.Poison:
+                enemy.ApplyPoisonEffect((int)Mathf.Floor(damage));
+                break;
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Enemy")) {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (enemy != null) {
+                ApplyEffect(enemy);
+
+
                 enemy.TakeDamage(damage);
             }
 

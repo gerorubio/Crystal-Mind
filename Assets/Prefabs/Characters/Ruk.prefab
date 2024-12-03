@@ -376,7 +376,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.099
+      value: 0.09899986
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
@@ -386,7 +386,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.139
+      value: 1.1390005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
@@ -396,17 +396,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.7071067
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.000000029802312
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.000000105239415
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1b124b710985d2744b1eef78979e5b3b,
         type: 3}
@@ -473,3 +473,4 @@ MonoBehaviour:
   initialAmmunition: 010000000100000001000000010000000100000001000000
   bulletPrefab: {fileID: 7103270400783169595, guid: 298495bff8d49734682281ec4f0b1e1a,
     type: 3}
+  projectile: {fileID: 0}

@@ -19,19 +19,15 @@ public class EnemyMovement : MonoBehaviour {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
-    
+
     private void Start () {
         animator.SetBool(isMoving, agent.velocity.magnitude > 0.01f);
         StartCoroutine(FollowTarget());
     }
 
     private void Update() {
-        animator.SetBool(isMoving, agent.velocity.magnitude > 0.01f);
-    }
-
-    private void OnDestroy() {
         if (animator != null) {
-            animator = null;
+            animator.SetBool(isMoving, agent.velocity.magnitude > 0.01f);
         }
     }
 
