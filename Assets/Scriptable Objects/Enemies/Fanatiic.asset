@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fanatiic
   m_EditorClassIdentifier: 
   enemyName: Infinite Eye's Fanatic
-  hp: 30
+  hp: 40
   speed: 25
   attackCooldown: 0.1
   attackRange: 0.05

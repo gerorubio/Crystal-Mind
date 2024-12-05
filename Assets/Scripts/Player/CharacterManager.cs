@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterManager : MonoBehaviour {
@@ -68,6 +69,12 @@ public class CharacterManager : MonoBehaviour {
         foreach (var dice in diceSet) {
             dice.sprite = null;
         }
+    }
+
+    public void Play() {
+        PlayerPrefs.SetInt("selectedOption", selectedOption);
+
+        SceneManager.LoadScene("Gameplay");
     }
 
     private void Load() {

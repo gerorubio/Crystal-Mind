@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -33,7 +34,11 @@ public class Character : MonoBehaviour {
     // XP Level System
     private int currentLevel = 1;
     private int currentXP = 0;
-    private int xpToNextLevel = 5;
+    private int xpToNextLevel = 3;
+
+    // Invulverability
+    private bool isInvulnerable = false;
+    private float invulnerabilityTime = 0.5f;
 
     // UNITY EVENTS
     public event Action<int, int> OnXpChanged; // currentXP, xpToNextLevel
@@ -99,7 +104,6 @@ public class Character : MonoBehaviour {
         }
 
         OnXpChanged?.Invoke(currentXP, xpToNextLevel);
-
     }
 
     private void LevelUp() {
@@ -136,6 +140,31 @@ public class Character : MonoBehaviour {
                 OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
             }
         }
+    }
+
+    // Modifiying stats
+    private void TakeDamage(int damage) {
+        CurrentHp -= damage;
+        OnHpChanged?.Invoke(CurrentHp);
+    }
+
+    // Collisions
+    private void OnTriggerEnter(Collider other) {
+        if(!isInvulnerable) {
+            if (other.CompareTag("Enemy")) {
+                TakeDamage(1);
+                StartCoroutine(TurnInvulnerability());
+            }
+        }
+    }
+
+    // Coroutines
+    private IEnumerator TurnInvulnerability() {
+        isInvulnerable = true;
+
+        yield return new WaitForSeconds(invulnerabilityTime);
+
+        isInvulnerable = false;
     }
 
     // PAUSE GAME

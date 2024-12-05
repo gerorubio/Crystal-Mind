@@ -14,11 +14,15 @@ public class HpDisplay : MonoBehaviour {
         if (player == null) {
             Debug.LogError("Player not found in scene");
         } else {
-            player.OnHpChanged += UpgradeDisplay;
+            player.OnHpChanged += UpdateDisplay;
         }
     }
 
-    private void UpgradeDisplay(int currentHp) {
+    private void UpdateDisplay(int currentHp) {
+        foreach (Transform child in hpParent.transform) {
+            Destroy(child.gameObject);
+        }
+
         for (int i = 0; i < currentHp; i++) {
             GameObject heartGO = new GameObject("Heart");
             Image heartImage = heartGO.AddComponent<Image>();

@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour {
     private NavMeshAgent agent;
 
     // Effect counter and flags
+    private EffectManager effectManager;
     // Burned
     public bool IsBurned { get; set; } = false;
     // Freeze
@@ -44,6 +45,9 @@ public class Enemy : MonoBehaviour {
         if(alceanistumContainer == null) {
             Debug.Log("Error: No alceanistum container found");
         }
+
+        effectManager = GetComponent<EffectManager>();
+        effectManager.DisableAllEffects();
     }
 
     void Update() {
@@ -51,6 +55,7 @@ public class Enemy : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
+        Debug.Log("Damage: " + damage);
         currentHp = Mathf.Max(currentHp - damage, 0);
         if(currentHp <= 0) {
             Die();
@@ -59,7 +64,7 @@ public class Enemy : MonoBehaviour {
 
     private void Die() {
         ThrowXP();
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     private void ThrowXP() {
@@ -72,6 +77,7 @@ public class Enemy : MonoBehaviour {
 
     public void ApplyBurnedEffect() {
         IsBurned = true;
+        effectManager.EnableEffect("burn");
     }
 
     public void ApplyFrozenEffect() {
@@ -101,11 +107,19 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    private IEnumerator WaitForEffectFirstTick(float seconds) {
+        yield return new WaitForSeconds(seconds);
+    }
+
     private IEnumerator ProcessFreeze() {
         // Remove freeze effect after 1.5 seconds
         agent.isStopped = true;
 
+        effectManager.EnableEffect("freeze");
+
         yield return new WaitForSeconds(1.5f);
+
+        effectManager.DisableEffect("freeze");
         isFrozen = false;
         freezeStacks = 0;
 
@@ -114,30 +128,40 @@ public class Enemy : MonoBehaviour {
 
     private IEnumerator ProcessBleed() {
         // Take damage every 0.5 seconds then reduce stacks minus 1
+        effectManager.EnableEffect("bleed");
+
+        WaitForEffectFirstTick(1f);
+        
         while (bleedStacks > 0) {
-            TakeDamage(bleedStacks);
+            TakeDamage(1);
 
             bleedStacks--;
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(1f);
         }
+        effectManager.DisableEffect("bleed");
         isBleeding = false;
         bleedCoroutine = null;
     }
 
     private IEnumerator ProcessPoison() {
         // Take damage every 3 seconds the reduce the stack at half
-        while(poisonStacks > 20) {
+        effectManager.EnableEffect("poison");
+
+        WaitForEffectFirstTick(3f);
+
+        do {
             TakeDamage(poisonStacks);
 
             poisonStacks /= 2;
 
-            if(poisonStacks < 20) {
+            if (poisonStacks < 20) {
                 poisonStacks = 0;
             } else {
                 yield return new WaitForSeconds(3f);
             }
-        }
+        } while (poisonStacks >= 20);
+
         isPoisoned = false;
         poisonCoroutine = null;
     }
