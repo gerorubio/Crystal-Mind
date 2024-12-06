@@ -55,7 +55,6 @@ public class Enemy : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
-        Debug.Log("Damage: " + damage);
         currentHp = Mathf.Max(currentHp - damage, 0);
         if(currentHp <= 0) {
             Die();
