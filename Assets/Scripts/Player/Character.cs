@@ -60,6 +60,7 @@ public class Character : MonoBehaviour {
     }
 
     void Start() {
+        // Event called to UI
         OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
         OnEquipArtifact?.Invoke(CurrentArtifacts.First());
         OnHpChanged?.Invoke(CurrentHp);

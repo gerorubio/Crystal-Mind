@@ -273,8 +273,8 @@ GameObject:
   - component: {fileID: 87018732}
   - component: {fileID: 87018733}
   - component: {fileID: 87018737}
-  - component: {fileID: 87018739}
   - component: {fileID: 87018740}
+  - component: {fileID: 87018742}
   - component: {fileID: 87018741}
   m_Layer: 5
   m_Name: Canvas
@@ -464,20 +464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentArtifact: {fileID: 682736078}
---- !u!114 &87018739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87018723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a3e78b379f79e448a05d881f722a36a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpParent: {fileID: 150867375}
-  heart: {fileID: 21300000, guid: 1b736f88731b33b4aa37f75517c1f0f5, type: 3}
 --- !u!114 &87018740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +512,20 @@ MonoBehaviour:
   currentSpell: {fileID: 1875559723}
   currentPoints: {fileID: 465946426}
   cost: {fileID: 1739594922}
+--- !u!114 &87018742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87018723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3e78b379f79e448a05d881f722a36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpParent: {fileID: 150867375}
+  heart: {fileID: 21300000, guid: 1b736f88731b33b4aa37f75517c1f0f5, type: 3}
 --- !u!1001 &115052004
 PrefabInstance:
   m_ObjectHideFlags: 0
