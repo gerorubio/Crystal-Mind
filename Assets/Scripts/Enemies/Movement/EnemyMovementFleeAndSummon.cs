@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovementFleeAndSummon : EnemyMovementBase {
     public float summonDistance;
@@ -8,38 +9,62 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
     public float chaseDistance;
 
     private bool isChasing = true;
-    private bool isFleeing =  false;
+    private bool isFleeing = false;
 
     protected override IEnumerator MovementLogic() {
         WaitForSeconds wait = new WaitForSeconds(updateSpeed);
+
+        Vector3 positionToMove = Vector3.zero;
 
         while (enabled) {
             if (agent != null && target != null) {
                 float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
                 if (isChasing) {
-                    if(distanceToPlayer > summonDistance) {
-                        //Chase
-                    } else {
-                        // Attack
-                    }
-                } else if(isAttacking) {
-                    if(distanceToPlayer < fleeDistance) {
-                        // Flee
-                    } else if(distanceToPlayer > chaseDistance) {
+                    if (distanceToPlayer > summonDistance) {
                         // Chase
+                        Debug.Log(target.position);
+                       positionToMove = target.position;
                     } else {
                         // Attack
+                        isChasing = false;
+                        AttackPlayer();
+                        positionToMove = Vector3.zero;
                     }
-                } else if(isFleeing) {
-                    if(distanceToPlayer > summonDistance) {
+                } else if (isAttacking) {
+                    if (distanceToPlayer < fleeDistance) {
+                        // Flee
+                        isFleeing = true;
+                        isAttacking = false;
+                        positionToMove = CalculateFleePosition();
+                    } else if (distanceToPlayer > chaseDistance) {
+                        // Chase
+                        isChasing = true;
+                        isAttacking = false;
+                    } else {
                         // Attack
+                        AttackPlayer();
+                        positionToMove = Vector3.zero;
+                    }
+                } else if (isFleeing) {
+                    if (distanceToPlayer > summonDistance) {
+                        // Attack
+                        isFleeing = false;
+                        AttackPlayer();
+                        positionToMove = Vector3.zero;
                     } else {
                         // Flee
+                        positionToMove = CalculateFleePosition();
                     }
                 }
 
-                agent.SetDestination(target.transform.position);
+                Debug.Log("Is Chasing: " + isChasing);
+                Debug.Log("Position to move: " + positionToMove);
+                Debug.Log("Distance to player: " + distanceToPlayer);
+                agent.isStopped = positionToMove == Vector3.zero;
+                agent.SetDestination(positionToMove);
+
+                Debug.DrawLine(transform.position, positionToMove, Color.red, 0.5f);
 
                 yield return wait;
             }
@@ -49,5 +74,20 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
     protected override void AttackPlayer() {
         isAttacking = true;
         animator.SetBool(attack, true);
+    }
+
+    private Vector3 CalculateFleePosition() {
+        Vector3 directionAwayFromPlayer = (transform.position - target.position).normalized;
+        Vector3 fleePosition = transform.position + directionAwayFromPlayer * fleeDistance;
+
+        Vector3 fleeTarget;
+
+        if (NavMesh.SamplePosition(fleePosition, out NavMeshHit hit, fleeDistance, NavMesh.AllAreas)) {
+            fleeTarget = hit.position;
+        } else {
+            fleeTarget = transform.position;
+        }
+
+        return fleeTarget;
     }
 }

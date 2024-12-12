@@ -2886,7 +2886,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 3860344374968933658, guid: 37d7003be277c8b499eec8f3b1f63a2b, type: 3}
   - {fileID: 3860344374968933658, guid: 07620f7389d03c24492d0209a15a5a83, type: 3}
-  - {fileID: 3860344374968933658, guid: 37d7003be277c8b499eec8f3b1f63a2b, type: 3}
+  - {fileID: 3860344374968933658, guid: e7415bb3509422f468aca65fad843aed, type: 3}
   initialSpawnInterval: 5
   halfLife: 30
   phaseDuration:
@@ -8428,7 +8428,7 @@ PrefabInstance:
     - target: {fileID: 5786819500937231489, guid: d25bc836b4917c045be217c0faca9b15,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -6.6
       objectReference: {fileID: 0}
     - target: {fileID: 5786819500937231489, guid: d25bc836b4917c045be217c0faca9b15,
         type: 3}
