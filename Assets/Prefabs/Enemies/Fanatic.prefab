@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463733266596830224}
   - component: {fileID: 3440103158916870392}
-  - component: {fileID: 1640205622538262790}
+  - component: {fileID: 3189835872919500469}
   m_Layer: 0
   m_Name: Fanatic
   m_TagString: Untagged
@@ -57,7 +57,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1640205622538262790
+--- !u!114 &3189835872919500469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3860344374968933658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd2accb2ae145f84db7166ca7baf962a, type: 3}
+  m_Script: {fileID: 11500000, guid: 263bf9829e29a5e43af5a511d29f91b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   updateSpeed: 0.1

@@ -2885,7 +2885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 3860344374968933658, guid: 37d7003be277c8b499eec8f3b1f63a2b, type: 3}
-  - {fileID: 8412512290744940453, guid: 44f288fac2a921040b94a4e1d402210e, type: 3}
+  - {fileID: 3860344374968933658, guid: 07620f7389d03c24492d0209a15a5a83, type: 3}
   - {fileID: 3860344374968933658, guid: 37d7003be277c8b499eec8f3b1f63a2b, type: 3}
   initialSpawnInterval: 5
   halfLife: 30
