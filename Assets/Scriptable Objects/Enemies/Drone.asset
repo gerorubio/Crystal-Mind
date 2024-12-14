@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f4bd7ddd98bd8448c761be9fd5dc15, type: 3}
-  m_Name: Police Wizard
+  m_Name: Drone
   m_EditorClassIdentifier: 
-  enemyName: 
-  hp: 20
-  speed: 15
-  attackCooldown: 8
-  attackRange: 20
-  enemyBehaviour: 2
-  experiencePoints: 10
+  enemyName: Magic Drone
+  hp: 15
+  speed: 20
+  attackCooldown: 5
+  attackRange: 30
+  enemyBehaviour: 1
+  experiencePoints: 5
   isBoss: 0

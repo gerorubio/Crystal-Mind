@@ -15,6 +15,7 @@ public class HpDisplay : MonoBehaviour {
             Debug.LogError("Player not found in scene");
         } else {
             player.OnHpChanged += UpdateDisplay;
+            UpdateDisplay(player.CurrentHp);
         }
     }
 

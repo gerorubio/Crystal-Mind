@@ -58,11 +58,11 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
                     }
                 }
 
-                Debug.Log("Is Chasing: " + isChasing);
-                Debug.Log("Position to move: " + positionToMove);
-                Debug.Log("Distance to player: " + distanceToPlayer);
-                agent.isStopped = positionToMove == Vector3.zero;
-                agent.SetDestination(positionToMove);
+                if(positionToMove != Vector3.zero) {
+                    agent.velocity = Vector3.zero;
+                } else {
+                    agent.SetDestination(positionToMove);
+                }
 
                 Debug.DrawLine(transform.position, positionToMove, Color.red, 0.5f);
 

@@ -61,7 +61,9 @@ public class Character : MonoBehaviour {
 
     void Start() {
         // Event called to UI
+        Debug.Log("Start Invoke OnEquipSpell");
         OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
+        Debug.Log("Finish Invoke OnEquipSpell");
         OnEquipArtifact?.Invoke(CurrentArtifacts.First());
         OnHpChanged?.Invoke(CurrentHp);
 
@@ -185,7 +187,7 @@ public class Character : MonoBehaviour {
 
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if (playerController != null) {
-            playerController.OnSpellCast += CastSpell;
+            playerController.OnSpellCast -= CastSpell;
         }
     }
 

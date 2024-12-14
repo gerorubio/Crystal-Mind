@@ -5,24 +5,42 @@ using UnityEngine.UI;
 using TMPro;
 
 public class SpellDisplay : MonoBehaviour {
+    private GameObject playerGO;
     private Character player;
-    public Image currentSpell;
-    public TMP_Text currentPoints;
-    public TMP_Text cost;
+    [SerializeField]
+    private Image currentSpell;
+    [SerializeField]
+    private TMP_Text currentPoints;
+    [SerializeField]
+    private TMP_Text cost;
 
-    void Start() {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
-
-        if (player == null) {
-            Debug.LogError("Player not found in scene");
+    private void Start() {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) {
+            player = playerObj.GetComponent<Character>();
+            BindPlayerEvents();
         } else {
-            player.OnEquipSpell += UpdateSpellDisplay;
-            player.OnIncreaseSpellPoints += UpdatePointsDisplay;
+            Debug.LogError("Player not found in scene at Start.");
         }
     }
 
+    private void OnEnable() {
+        if (player != null) {
+            BindPlayerEvents();
+        }
+    }
+
+    private void BindPlayerEvents() {
+        player.OnEquipSpell += UpdateSpellDisplay;
+        player.OnIncreaseSpellPoints += UpdatePointsDisplay;
+
+        UpdateSpellDisplay(player.CurrentSpell, player.CurrentSpellPoints);
+    }
+
+
     // New spell equipped
     void UpdateSpellDisplay(SpellSO spell, int points) {
+        Debug.Log(spell.spellName);
         currentSpell.sprite = spell.artWork;
         currentPoints.text = points.ToString();
         cost.text = spell.cost.ToString();
