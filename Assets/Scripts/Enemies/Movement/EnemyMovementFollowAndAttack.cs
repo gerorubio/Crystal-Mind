@@ -5,43 +5,66 @@ using UnityEngine;
 public class EnemyMovementFollowAndAttack : EnemyMovementBase {
     public float attackDistance;
     public float chaseDistance;
+    [SerializeField]
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private GameObject projectileSource;
+
+    public float projectileForce = 10f;
 
     protected override IEnumerator MovementLogic() {
         WaitForSeconds wait = new WaitForSeconds(updateSpeed);
 
-        while (enabled) {
+        while (enabled && target != null) {
             if (agent != null && target != null) {
                 float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-                if(isAttacking) { // Enemy is attacking
+                // Rotate towards the player when moving or attacking
+                RotateTowardsPlayer();
+
+                if (isAttacking) { // Enemy is attacking
                     // Player is out of range
-                    if(distanceToPlayer > chaseDistance) {
+                    if (distanceToPlayer > chaseDistance) {
                         isAttacking = false;
-                        agent.isStopped = false;
-                        animator.SetBool(attack, false);
+                        animator.SetBool(isMoving, true);
+
+                        // Ensure the agent speed is properly set during movement
+                        agent.speed = speed;  // Ensure speed is set to a reasonable value, e.g., 1-3
+                        agent.SetDestination(target.transform.position);  // Let agent move automatically
                     } else { // Player in range
-                        agent.isStopped = true;
-                        AttackPlayer();
-                    } 
-                } else { // enemy is chasing the player
-                    // In range
-                    if(distanceToPlayer < attackDistance) {
+                        agent.velocity = Vector3.zero;  // Stop movement during attack
+                        animator.SetBool(attack, true); // Play attack animation
+                    }
+                } else { // Enemy is chasing the player
+                    // In range for attack
+                    if (distanceToPlayer < attackDistance) {
                         isAttacking = true;
-                        agent.isStopped = true;
-                    } else { // out of range
+                        agent.isStopped = true;  // Stop moving while attacking
+                    } else { // Out of range
                         agent.isStopped = false;
+                        animator.SetBool(isMoving, true);  // Play walking animation
+
+                        // Set movement speed for chasing
+                        agent.speed = speed;  // Ensure speed is reasonable for chasing (e.g., 1-3)
+                        agent.SetDestination(target.transform.position);  // Continue chasing
                     }
                 }
-
-                agent.SetDestination(target.transform.position);
 
                 yield return wait;
             }
         }
     }
 
-    protected override void AttackPlayer() {
-        isAttacking = true;
-        animator.SetBool(attack, true);
+    private void RotateTowardsPlayer() {
+        if (target == null) return;
+
+        // Calculate the direction to the player
+        Vector3 directionToPlayer = (target.position - transform.position).normalized;
+
+        // Rotate the parent object smoothly (keep y-axis rotation only)
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+
+        // Smooth rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 500f);
     }
 }

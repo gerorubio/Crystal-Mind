@@ -40,7 +40,6 @@ public class SpellDisplay : MonoBehaviour {
 
     // New spell equipped
     void UpdateSpellDisplay(SpellSO spell, int points) {
-        Debug.Log(spell.spellName);
         currentSpell.sprite = spell.artWork;
         currentPoints.text = points.ToString();
         cost.text = spell.cost.ToString();

@@ -2,32 +2,26 @@ using System.Collections;
 using UnityEngine;
 
 public class DroneShoot : MonoBehaviour {
-    // Public variables to assign in the Inspector
-    public GameObject projectileSource; // The origin point of the projectile
-    public GameObject projectilePrefab; // The projectile to be instantiated
+    public GameObject projectileSource;
+    public GameObject projectilePrefab;
 
-    // Shooting interval
-    public float shootInterval = 2f;
+    public float projectileForce;
 
-    private void Start() {
-        // Start the shooting loop
-        StartCoroutine(ShootProjectile());
-    }
+    public void ShootProjectile() {
+        // Ensure both source and prefab are set
+        if (projectileSource != null && projectilePrefab != null) {
+            // Instantiate the projectile at the source's position and rotation
+            GameObject newProjectile = Instantiate(projectilePrefab, projectileSource.transform.position, Quaternion.identity);
 
-    private IEnumerator ShootProjectile() {
-        WaitForSeconds wait = new WaitForSeconds(shootInterval);
-
-        while (enabled) {
-            // Ensure both source and prefab are set
-            if (projectileSource != null && projectilePrefab != null) {
-                // Instantiate the projectile at the source's position and rotation
-                Instantiate(projectilePrefab, projectileSource.transform.position, projectileSource.transform.rotation);
+            Rigidbody rb = newProjectile.GetComponent<Rigidbody>();
+            if (rb != null) {
+                // Apply force in the forward direction of the projectile source
+                rb.AddForce(projectileSource.transform.forward * projectileForce, ForceMode.Impulse);
             } else {
-                Debug.LogWarning("ProjectileSource or ProjectilePrefab is not set on " + gameObject.name);
+                Debug.LogWarning("ProjectilePrefab is missing a Rigidbody!");
             }
-
-            // Wait for the specified interval before shooting again
-            yield return wait;
+        } else {
+            Debug.LogWarning("ProjectileSource or ProjectilePrefab is not set on " + gameObject.name);
         }
     }
 }

@@ -16,7 +16,7 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
 
         Vector3 positionToMove = Vector3.zero;
 
-        while (enabled) {
+        while (enabled && target != null) {
             if (agent != null && target != null) {
                 float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
@@ -28,7 +28,6 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
                     } else {
                         // Attack
                         isChasing = false;
-                        AttackPlayer();
                         positionToMove = Vector3.zero;
                     }
                 } else if (isAttacking) {
@@ -43,14 +42,12 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
                         isAttacking = false;
                     } else {
                         // Attack
-                        AttackPlayer();
                         positionToMove = Vector3.zero;
                     }
                 } else if (isFleeing) {
                     if (distanceToPlayer > summonDistance) {
                         // Attack
                         isFleeing = false;
-                        AttackPlayer();
                         positionToMove = Vector3.zero;
                     } else {
                         // Flee
@@ -69,11 +66,6 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
                 yield return wait;
             }
         }
-    }
-
-    protected override void AttackPlayer() {
-        isAttacking = true;
-        animator.SetBool(attack, true);
     }
 
     private Vector3 CalculateFleePosition() {

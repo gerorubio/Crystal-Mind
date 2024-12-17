@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90f4bd7ddd98bd8448c761be9fd5dc15, type: 3}
-  m_Name: Drone
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Global Volume (1) Profile
   m_EditorClassIdentifier: 
-  enemyName: Magic Drone
-  hp: 15
-  speed: 2
-  attackCooldown: 5
-  attackRange: 30
-  enemyBehaviour: 1
-  experiencePoints: 5
-  isBoss: 0
+  components: []

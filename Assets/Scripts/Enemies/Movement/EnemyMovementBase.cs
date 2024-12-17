@@ -42,5 +42,4 @@ public abstract class EnemyMovementBase : MonoBehaviour {
     }
 
     protected abstract IEnumerator MovementLogic();
-    protected abstract void AttackPlayer();
 }

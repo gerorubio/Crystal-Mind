@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Networking;
 
 public class Character : MonoBehaviour {
@@ -39,6 +40,12 @@ public class Character : MonoBehaviour {
     // Invulverability
     private bool isInvulnerable = false;
     private float invulnerabilityTime = 0.5f;
+    [SerializeField]
+    private float repelSpeed;
+    [SerializeField]
+    private float repelDuration;
+    [SerializeField]
+    private float repelRadius;
 
     // UNITY EVENTS
     public event Action<int, int> OnXpChanged; // currentXP, xpToNextLevel
@@ -61,9 +68,7 @@ public class Character : MonoBehaviour {
 
     void Start() {
         // Event called to UI
-        Debug.Log("Start Invoke OnEquipSpell");
         OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
-        Debug.Log("Finish Invoke OnEquipSpell");
         OnEquipArtifact?.Invoke(CurrentArtifacts.First());
         OnHpChanged?.Invoke(CurrentHp);
 
@@ -151,12 +156,42 @@ public class Character : MonoBehaviour {
         OnHpChanged?.Invoke(CurrentHp);
     }
 
+    // Repel Enemies
+
+    private void RepelEnemies(float repelSpeed, float repelDuration, float repelRadius) {
+        Collider[] enemies = Physics.OverlapSphere(transform.position, repelRadius, LayerMask.GetMask("Enemy"));
+
+        foreach (Collider enemy in enemies) {
+            NavMeshAgent agent = enemy.transform.parent.GetComponent<NavMeshAgent>();
+            if(agent != null) {
+                Vector3 repelDirection = (enemy.transform.position - transform.position).normalized;
+                Vector3 repelVelocity = repelDirection * repelSpeed;
+
+                StartCoroutine(ApplyRepelVelocity(agent, repelVelocity, repelDuration));
+            }
+        }
+    }
+
+    private IEnumerator ApplyRepelVelocity(NavMeshAgent agent, Vector3 velocity, float duration) {
+        float timer = 0f;
+
+        while(timer < duration) {
+            timer += Time.deltaTime;
+            agent.velocity = velocity;
+            yield return null;
+        }
+
+
+        agent.velocity = Vector3.zero;
+    }
+
     // Collisions
     private void OnTriggerEnter(Collider other) {
         if(!isInvulnerable) {
             if (other.CompareTag("Enemy")) {
                 TakeDamage(1);
                 StartCoroutine(TurnInvulnerability());
+                RepelEnemies(repelSpeed, repelDuration, repelRadius);
             }
         }
     }
