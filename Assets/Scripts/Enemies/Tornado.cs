@@ -12,17 +12,17 @@ public class Tornado : MonoBehaviour {
     }
 
     private IEnumerator SummonTornado() {
-        summonCircle.SetActive(true);
+        //summonCircle.SetActive(true);
         
-        yield return new WaitForSeconds(1);
+        //yield return new WaitForSeconds(1);
 
-        //summonCircle.SetActive(false);
+        ////summonCircle.SetActive(false);
 
-        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
+        //CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
 
-        capsuleCollider.enabled = true;
+        //capsuleCollider.enabled = true;
 
-        tornado.SetActive(true);
+        //tornado.SetActive(true);
         yield return new WaitForSeconds(2);
 
         Destroy(gameObject);
