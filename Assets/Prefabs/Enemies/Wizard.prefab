@@ -72,7 +72,7 @@ MonoBehaviour:
   updateSpeed: 0.1
   animator: {fileID: 419175758842913433}
   summonDistance: 10
-  fleeDistance: 3
+  fleeDistance: 5
   chaseDistance: 15
 --- !u!1 &8971105221115446634
 GameObject:
@@ -458,6 +458,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2759403629046010042}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fed330ec738ae94d872ef9b6cb67cb1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3772087723096389245}
   m_SourcePrefab: {fileID: 100100000, guid: 5fed330ec738ae94d872ef9b6cb67cb1, type: 3}
 --- !u!95 &419175758842913433 stripped
 Animator:
@@ -532,6 +536,19 @@ MonoBehaviour:
   freezeParticle: {fileID: 4158788710427811319}
   bleedParticle: {fileID: 7078818932475151133}
   poisonParticle: {fileID: 6825829882245222772}
+--- !u!114 &3772087723096389245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375630708840653401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23978f2b7d9f3734281081467aaf1169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tornado: {fileID: 5450436737061523615, guid: e41819fd07acb134f8a85aa8495c5e43, type: 3}
 --- !u!1001 &6464954941328498651
 PrefabInstance:
   m_ObjectHideFlags: 0
