@@ -41,5 +41,18 @@ public abstract class EnemyMovementBase : MonoBehaviour {
         }
     }
 
+    protected void RotateTowardsPlayer() {
+        if (target == null) return;
+
+        // Calculate the direction to the player
+        Vector3 directionToPlayer = (target.position - transform.position).normalized;
+
+        // Rotate the parent object smoothly (keep y-axis rotation only)
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+
+        // Smooth rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 500f);
+    }
+
     protected abstract IEnumerator MovementLogic();
 }

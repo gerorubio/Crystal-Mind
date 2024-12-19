@@ -19,7 +19,6 @@ public class EnemyMovementFollowAndAttack : EnemyMovementBase {
             if (agent != null && target != null) {
                 float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-                // Rotate towards the player when moving or attacking
                 RotateTowardsPlayer();
 
                 if (isAttacking) { // Enemy is attacking
@@ -53,18 +52,5 @@ public class EnemyMovementFollowAndAttack : EnemyMovementBase {
                 yield return wait;
             }
         }
-    }
-
-    private void RotateTowardsPlayer() {
-        if (target == null) return;
-
-        // Calculate the direction to the player
-        Vector3 directionToPlayer = (target.position - transform.position).normalized;
-
-        // Rotate the parent object smoothly (keep y-axis rotation only)
-        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-
-        // Smooth rotation
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 500f);
     }
 }

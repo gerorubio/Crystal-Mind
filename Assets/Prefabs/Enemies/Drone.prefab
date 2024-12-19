@@ -603,7 +603,7 @@ MonoBehaviour:
   projectileSource: {fileID: 379671741799861950}
   projectilePrefab: {fileID: 8979974552765006230, guid: f30d1a521d643894da733c8c03b1b327,
     type: 3}
-  projectileForce: 0
+  projectileForce: 25
 --- !u!1001 &6464954941328498651
 PrefabInstance:
   m_ObjectHideFlags: 0

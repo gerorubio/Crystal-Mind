@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,60 +8,69 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
     public float chaseDistance;
 
     private bool isChasing = true;
-    private bool isFleeing = false;
 
     protected override IEnumerator MovementLogic() {
         WaitForSeconds wait = new WaitForSeconds(updateSpeed);
-
-        Vector3 positionToMove = Vector3.zero;
 
         while (enabled && target != null) {
             if (agent != null && target != null) {
                 float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-                if (isChasing) {
+                RotateTowardsPlayer();
+
+                if (isChasing) { // Chasing logic
                     if (distanceToPlayer > summonDistance) {
-                        // Chase
-                        Debug.Log(target.position);
-                       positionToMove = target.position;
+                        agent.isStopped = false;
+                        agent.speed = speed;
+                        animator.SetBool(isMoving, true);
+                        agent.SetDestination(target.position);
                     } else {
-                        // Attack
+                        // Switch to attacking state
                         isChasing = false;
-                        positionToMove = Vector3.zero;
+                        isAttacking = true;
+                        agent.isStopped = true;
+                        animator.SetBool(isMoving, false);
+                        animator.SetBool(attack, true);
                     }
-                } else if (isAttacking) {
+                } else if (isAttacking) { // Attacking logic
                     if (distanceToPlayer < fleeDistance) {
-                        // Flee
-                        isFleeing = true;
+                        // Switch to fleeing state
                         isAttacking = false;
-                        positionToMove = CalculateFleePosition();
+                        animator.SetBool(attack, false);
+                        animator.SetBool(isMoving, true);
+
+                        agent.isStopped = false;
+                        agent.SetDestination(CalculateFleePosition());
                     } else if (distanceToPlayer > chaseDistance) {
-                        // Chase
+                        // Resume chasing
                         isChasing = true;
                         isAttacking = false;
+
+                        animator.SetBool(isMoving, true);
+                        animator.SetBool(attack, false);
                     } else {
-                        // Attack
-                        positionToMove = Vector3.zero;
+                        // Continue attack (stop agent movement)
+                        agent.isStopped = true;
                     }
-                } else if (isFleeing) {
+                } else { // Fleeing logic
                     if (distanceToPlayer > summonDistance) {
-                        // Attack
-                        isFleeing = false;
-                        positionToMove = Vector3.zero;
+                        // Stop fleeing and prepare to attack
+                        isAttacking = true;
+                        agent.isStopped = true;
+                        animator.SetBool(isMoving, false);
+                        animator.SetBool(attack, true);
                     } else {
-                        // Flee
-                        positionToMove = CalculateFleePosition();
+                        // Keep fleeing
+                        agent.isStopped = false;
+                        animator.SetBool(isMoving, true);
+                        agent.SetDestination(CalculateFleePosition());
                     }
                 }
 
-                if(positionToMove != Vector3.zero) {
-                    agent.velocity = Vector3.zero;
-                } else {
-                    agent.SetDestination(positionToMove);
-                }
+                // Stop velocity explicitly when agent stops moving
+                if (agent.isStopped) agent.velocity = Vector3.zero;
 
-                Debug.DrawLine(transform.position, positionToMove, Color.red, 0.5f);
-
+                Debug.DrawLine(transform.position, agent.destination, Color.red, 0.5f);
                 yield return wait;
             }
         }
@@ -72,14 +80,9 @@ public class EnemyMovementFleeAndSummon : EnemyMovementBase {
         Vector3 directionAwayFromPlayer = (transform.position - target.position).normalized;
         Vector3 fleePosition = transform.position + directionAwayFromPlayer * fleeDistance;
 
-        Vector3 fleeTarget;
+        if (NavMesh.SamplePosition(fleePosition, out NavMeshHit hit, fleeDistance, NavMesh.AllAreas))
+            return hit.position;
 
-        if (NavMesh.SamplePosition(fleePosition, out NavMeshHit hit, fleeDistance, NavMesh.AllAreas)) {
-            fleeTarget = hit.position;
-        } else {
-            fleeTarget = transform.position;
-        }
-
-        return fleeTarget;
+        return transform.position; // Fallback to current position
     }
 }
