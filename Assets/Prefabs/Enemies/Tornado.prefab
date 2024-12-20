@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 2061775350289210880}
   m_Layer: 0
   m_Name: Tornado
-  m_TagString: Enemy
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

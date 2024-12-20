@@ -7,11 +7,12 @@ public class SpellSO : ScriptableObject {
     public string spellName;
     public string description;
     public Sprite artWork;
+    
+    public SpellEffect effect;
 
     public int cost;
 
     public void Cast() {
 
     }
-
 }

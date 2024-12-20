@@ -188,7 +188,7 @@ public class Character : MonoBehaviour {
     // Collisions
     private void OnTriggerEnter(Collider other) {
         if(!isInvulnerable) {
-            if (other.CompareTag("Enemy")) {
+            if (other.CompareTag("Enemy") || other.CompareTag("EnemyProjectile")) {
                 TakeDamage(1);
                 StartCoroutine(TurnInvulnerability());
                 RepelEnemies(repelSpeed, repelDuration, repelRadius);
