@@ -15,4 +15,5 @@ MonoBehaviour:
   spellName: Arrow Rain
   description: Inflict 100 damage over a large area.
   artWork: {fileID: 21300000, guid: bc535b1888c95a84a86b4242928d1232, type: 3}
+  effect: {fileID: 11400000, guid: 78077aa2811d3764fb3272ca95b0e710, type: 2}
   cost: 40

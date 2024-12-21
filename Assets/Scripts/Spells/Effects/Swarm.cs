@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Swarm", menuName = "Spells/Effects/SwarmEffect")]
 public class Swarm : SpellEffect {
-    public override void Cast() {
+    public override void Cast(Character player) {
         // Logic to cast
     }
 }

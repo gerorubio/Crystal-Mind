@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "NoxiousFog", menuName = "Spells/Effects/NoxiousFogEffect")]
 public class NoxiousFog : SpellEffect {
-    public override void Cast() {
+    public override void Cast(Character player) {
         // Logic to cast
     }
 }

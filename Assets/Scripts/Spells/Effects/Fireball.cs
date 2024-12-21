@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Fireball", menuName = "Spells/Effects/FireballEffect")]
 public class Fireball : SpellEffect {
-    public override void Cast() {
+    public override void Cast(Character player) {
         // Logic to cast
     }
 }

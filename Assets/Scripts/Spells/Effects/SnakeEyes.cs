@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "SnakeEyes", menuName = "Spells/Effects/SnakeEyesEffect")]
 public class SnakeEyes : SpellEffect {
-    public override void Cast() {
+    public override void Cast(Character player) {
         // Logic to cast
     }
 }

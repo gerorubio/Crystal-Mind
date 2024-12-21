@@ -12,7 +12,7 @@ public class SpellSO : ScriptableObject {
 
     public int cost;
 
-    public void Cast() {
-
+    public void Cast(Character player) {
+        effect.Cast(player);
     }
 }

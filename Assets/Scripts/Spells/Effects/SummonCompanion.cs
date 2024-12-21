@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "SummonCompanion", menuName = "Spells/Effects/SummonCompanionEffect")]
 public class SummonCompanion : SpellEffect {
-    public override void Cast() {
+    public override void Cast(Character player) {
         // Logic to cast
     }
 }

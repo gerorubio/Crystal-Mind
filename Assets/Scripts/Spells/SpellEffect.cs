@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class SpellEffect : ScriptableObject {
-    public virtual void Cast() { }
+    public virtual void Cast(Character player) { }
 }

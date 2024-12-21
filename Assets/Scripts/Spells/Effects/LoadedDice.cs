@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "LoadedDice", menuName = "Spells/Effects/LoadedDiceEffect")]
 public class LoadedDice : SpellEffect {
-    public override void Cast() {
+    public override void Cast(Character player) {
         // Logic to cast
     }
 }

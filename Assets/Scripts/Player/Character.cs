@@ -144,7 +144,7 @@ public class Character : MonoBehaviour {
         if (CurrentSpell != null) {
             if(CurrentSpellPoints == CurrentSpell.cost) {
                 CurrentSpellPoints = 0;
-                CurrentSpell.Cast();
+                CurrentSpell.Cast(this);
                 OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
             }
         }

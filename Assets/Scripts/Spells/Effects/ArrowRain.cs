@@ -4,7 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ArrowRain", menuName = "Spells/Effects/ArrowRainEffect")]
 public class ArrowRain : SpellEffect {
-    public override void Cast() {
-        // Logic to cast
+    public GameObject arrowRain;
+
+    public override void Cast(Character player) {
+        Instantiate(arrowRain);
     }
 }

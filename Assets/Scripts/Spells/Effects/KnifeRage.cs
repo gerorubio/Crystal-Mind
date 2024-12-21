@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "KnifeRage", menuName = "Spells/Effects/KnifeRageEffect")]
 public class KnifeRage : SpellEffect {
-    public override void Cast() {
+    public override void Cast(Character player) {
         // Logic to cast
     }
 }
