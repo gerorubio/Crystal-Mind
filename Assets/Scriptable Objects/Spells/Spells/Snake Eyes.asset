@@ -16,4 +16,5 @@ MonoBehaviour:
   description: Generate 6d4 dice, each with faces containing only 1, and apply a
     bleeding effect.
   artWork: {fileID: 21300000, guid: 8abc3d9dacf554c4f9f4a7b1a8d3ae1c, type: 3}
+  effect: {fileID: 11400000, guid: d338ab59a7b73dd479bb9bcb99a36d3b, type: 2}
   cost: 20
