@@ -22,7 +22,7 @@ public class Character : MonoBehaviour {
     public float CurrentXpCollectionRange { get; set; } = 5f;
 
     // Weapon
-    private Weapon weapon;
+    public Weapon Weapon { get; set; }
 
     // Artifacts
     private List<ArtifactSO> CurrentArtifacts { get; } = new List<ArtifactSO>();
@@ -72,10 +72,10 @@ public class Character : MonoBehaviour {
         OnEquipArtifact?.Invoke(CurrentArtifacts.First());
         OnHpChanged?.Invoke(CurrentHp);
 
-        weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Weapon>();
+        Weapon = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Weapon>();
 
-        weapon.OnReload += IncreaseSpellPoints;
-        weapon.OnShoot += TriggerArtifactsOnShoot;
+        Weapon.OnReload += IncreaseSpellPoints;
+        Weapon.OnShoot += TriggerArtifactsOnShoot;
     }
 
     public void Update() {
@@ -129,7 +129,7 @@ public class Character : MonoBehaviour {
     }
 
     public void EquipArtifact(ArtifactSO artifact, Face face) {
-        artifact.artifactEffect.OnEquip(this, weapon, face);
+        artifact.artifactEffect.OnEquip(this, Weapon, face);
         OnEquipArtifact?.Invoke(artifact);
     }
 

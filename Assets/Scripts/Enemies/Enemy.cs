@@ -47,7 +47,11 @@ public class Enemy : MonoBehaviour {
         }
 
         effectManager = GetComponent<EffectManager>();
-        effectManager.DisableAllEffects();
+        if (effectManager != null) {
+            effectManager.DisableAllEffects();
+        } else {
+            Debug.LogError("Error: No effect manager found");
+        }
     }
 
     void Update() {
@@ -55,6 +59,7 @@ public class Enemy : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
+        Debug.Log("Damage taken: " +  damage);
         currentHp = Mathf.Max(currentHp - damage, 0);
         if(currentHp <= 0) {
             Die();

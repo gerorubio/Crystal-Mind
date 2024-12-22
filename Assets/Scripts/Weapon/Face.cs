@@ -19,6 +19,7 @@ public class Face {
 
     public Face(int value, EffectType effect) {
         this.value = value;
-        this.effect = effect;
+        //this.effect = effect;
+        this.effect = EffectType.Burned;
     }
 }

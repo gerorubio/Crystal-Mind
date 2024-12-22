@@ -16,4 +16,5 @@ MonoBehaviour:
   description: Apply freeze condition to all enemies every 3 seconds for a total
     duration of 9 seconds.
   artWork: {fileID: 21300000, guid: 751997a9664664148b4cf7dcb0eadabc, type: 3}
-  cost: 60
+  effect: {fileID: 11400000, guid: ec55a52e111506f4494df4210bf104ca, type: 2}
+  cost: 10

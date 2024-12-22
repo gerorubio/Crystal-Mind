@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b40eb4cc55489a3448d929ad16ea8abc, type: 3}
-  m_Name: ArrowRain
+  m_Script: {fileID: 11500000, guid: 5a522b34e3bfac64e9e114858f81cc4b, type: 3}
+  m_Name: Blizzard
   m_EditorClassIdentifier: 
-  arrowRain: {fileID: 3171307658013498276, guid: f6bceb046912c9c468c86bef7b120988,
+  blizzard: {fileID: 2981284958995163555, guid: 259fa9608d977694f8895bfabe2575f4,
     type: 3}

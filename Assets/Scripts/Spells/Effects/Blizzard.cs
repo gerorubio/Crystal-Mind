@@ -4,7 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Blizzard", menuName = "Spells/Effects/BlizzardEffect")]
 public class Blizzard : SpellEffect {
+    public GameObject blizzard;
     public override void Cast(Character player) {
-        // Logic to cast
+        Instantiate(blizzard, player.transform.position, Quaternion.identity);
     }
 }

@@ -7,6 +7,6 @@ public class ArrowRain : SpellEffect {
     public GameObject arrowRain;
 
     public override void Cast(Character player) {
-        Instantiate(arrowRain);
+        Instantiate(arrowRain, player.transform.position, Quaternion.identity);
     }
 }
