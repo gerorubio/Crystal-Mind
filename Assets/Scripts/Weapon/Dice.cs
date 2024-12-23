@@ -82,7 +82,7 @@ public class Dice {
         }
     }
 
-    public Dice(int numberOfFaces, int value, EffectType effectType) {
+    public Dice(int numberOfFaces, int value = 0, EffectType effectType = EffectType.None) {
         // Initialize the faces array with the specified length d4, d6, d8, d10, d12, d20
         this.faces = new Face[numberOfFaces];
 
