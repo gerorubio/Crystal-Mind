@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour {
     public static event Action OnGamePaused;
     public static event Action OnGameResumed;
 
+    public static event Action OnGameOver;
+
+    private bool isGameOver = false;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -39,5 +43,13 @@ public class GameManager : MonoBehaviour {
         GameIsPaused = false;
         Time.timeScale = 1f;
         OnGameResumed?.Invoke();
+    }
+
+    public void GameOver() {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        Time.timeScale = 0f;
+        OnGameOver?.Invoke();
     }
 }

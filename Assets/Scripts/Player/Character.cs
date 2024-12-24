@@ -30,7 +30,7 @@ public class Character : MonoBehaviour {
     // Spell
     public SpellSO CurrentSpell { get; set; }
 
-    public int CurrentSpellPoints {  get; set; }
+    public int CurrentSpellPoints { get; set; }
 
     // XP Level System
     private int currentLevel = 1;
@@ -103,7 +103,7 @@ public class Character : MonoBehaviour {
     public void GainXP(int xp) {
         this.currentXP += xp;
 
-        if(this.currentXP >= xpToNextLevel) {
+        if (this.currentXP >= xpToNextLevel) {
             this.currentXP -= xpToNextLevel;
             this.currentLevel++;
             LevelUp();
@@ -134,7 +134,7 @@ public class Character : MonoBehaviour {
     }
 
     private void TriggerArtifactsOnShoot(Weapon weapon, Dice dice, Projectile projectile) {
-        foreach(ArtifactSO artifact in CurrentArtifacts) {
+        foreach (ArtifactSO artifact in CurrentArtifacts) {
             artifact.artifactEffect.OnShoot(null, weapon, dice, projectile);
         }
     }
@@ -142,7 +142,7 @@ public class Character : MonoBehaviour {
     // SPELLS
     public void CastSpell() {
         if (CurrentSpell != null) {
-            if(CurrentSpellPoints == CurrentSpell.cost) {
+            if (CurrentSpellPoints == CurrentSpell.cost) {
                 CurrentSpellPoints = 0;
                 CurrentSpell.Cast(this);
                 OnEquipSpell?.Invoke(CurrentSpell, CurrentSpellPoints);
@@ -154,6 +154,14 @@ public class Character : MonoBehaviour {
     private void TakeDamage(int damage) {
         CurrentHp -= damage;
         OnHpChanged?.Invoke(CurrentHp);
+        if (CurrentHp <= 0) {
+            Die();
+        }
+    }
+
+    public void Die() {
+        Debug.Log("Die");
+        GameManager.Instance.GameOver();
     }
 
     // Repel Enemies
