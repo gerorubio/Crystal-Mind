@@ -8,6 +8,10 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void LoadPlayer() {
+        PlayerData data = SaveSystem.LoadPlayer();
+    }
+
     public void QuitGame() {
         #if UNITY_EDITOR
                 // Application.Quit() does not work in the editor so

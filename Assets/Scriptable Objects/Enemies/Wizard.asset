@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f4bd7ddd98bd8448c761be9fd5dc15, type: 3}
   m_Name: Wizard
   m_EditorClassIdentifier: 
-  enemyName: 
-  hp: 20
-  speed: 15
+  enemyName: Wizard
+  hp: 10
+  speed: 10
   attackCooldown: 8
   attackRange: 20
   enemyBehaviour: 2

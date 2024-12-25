@@ -33,9 +33,9 @@ public class Character : MonoBehaviour {
     public int CurrentSpellPoints { get; set; }
 
     // XP Level System
-    private int currentLevel = 1;
-    private int currentXP = 0;
-    private int xpToNextLevel = 3;
+    public int CurrentLevel { get; set; } = 1;
+    public int CurrentXP { get; set; } = 0;
+    public int XpToNextLevel { get; set; } = 3;
 
     // Invulverability
     private bool isInvulnerable = false;
@@ -101,22 +101,22 @@ public class Character : MonoBehaviour {
     }
 
     public void GainXP(int xp) {
-        this.currentXP += xp;
+        CurrentXP += xp;
 
-        if (this.currentXP >= xpToNextLevel) {
-            this.currentXP -= xpToNextLevel;
-            this.currentLevel++;
+        if (CurrentXP >= XpToNextLevel) {
+            CurrentXP -= XpToNextLevel;
+            CurrentLevel++;
             LevelUp();
 
-            xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.25f);
+            XpToNextLevel = Mathf.RoundToInt(XpToNextLevel * 1.25f);
         }
 
-        OnXpChanged?.Invoke(currentXP, xpToNextLevel);
+        OnXpChanged?.Invoke(CurrentXP, XpToNextLevel);
     }
 
     private void LevelUp() {
         GameManager.Instance.TogglePause();
-        OnLevelUp?.Invoke(currentLevel); // current level will be to apply weight in upgrade rarity
+        OnLevelUp?.Invoke(CurrentLevel); // current level will be to apply weight in upgrade rarity
     }
 
     private void IncreaseSpellPoints(int value) {

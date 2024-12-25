@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Zenlira
   characterSprite: {fileID: 21300000, guid: 7e3258f75ea755c41a59855909956d84, type: 3}
-  description: A young person born blind but gifted with magical vision, considered
+  description: A young lady born blind but gifted with magical vision, considered
     a threat to the regime and sentenced to death.
   d4: 4
   d6: 2
@@ -27,3 +27,5 @@ MonoBehaviour:
   hp: 3
   reloadSpeed: 2
   fireRate: 2
+  movementSpeed: 10
+  attackRange: 10

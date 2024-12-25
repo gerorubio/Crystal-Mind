@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -12,17 +11,18 @@ public class Tornado : MonoBehaviour {
     }
 
     private IEnumerator SummonTornado() {
-        //summonCircle.SetActive(true);
-        
-        //yield return new WaitForSeconds(1);
+        summonCircle.SetActive(true);
 
-        ////summonCircle.SetActive(false);
+        yield return new WaitForSeconds(1);
 
-        //CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
+        //summonCircle.SetActive(false);
 
-        //capsuleCollider.enabled = true;
+        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
 
-        //tornado.SetActive(true);
+        capsuleCollider.enabled = true;
+
+        tornado.SetActive(true);
+
         yield return new WaitForSeconds(2);
 
         Destroy(gameObject);

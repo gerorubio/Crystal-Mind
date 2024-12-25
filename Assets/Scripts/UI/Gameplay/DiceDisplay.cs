@@ -191,7 +191,7 @@ public class DiceDisplay : MonoBehaviour {
                     Random.Range(-20f, 20f)
                 );
 
-                dice.transform.Rotate(randomVector * 1000 * Time.deltaTime);
+                dice.transform.Rotate(randomVector * 100 * Time.deltaTime);
             }
             yield return null;
         }
