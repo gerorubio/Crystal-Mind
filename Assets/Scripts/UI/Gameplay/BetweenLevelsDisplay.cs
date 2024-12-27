@@ -5,19 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class BetweenLevelsDisplay : MonoBehaviour {
     public GameObject betweenLevelUI;
+    public EnemySpawn spawn;
 
-    public void SavePlayer() {
+    public void SaveGame() {
         Character player = GameObject.FindWithTag("Player").GetComponent<Character>();
 
         if (player != null) {
-            SaveSystem.SavePlayer(player);
+            SaveSystem.SaveData(player, spawn);
             SceneManager.LoadScene("StartMenu");
         } else {
             Debug.LogError("Not player found");
         }
     }
 
-    public void ResumeFromBetweenLevels() {
+    public void Resume() {
         GameManager.Instance.ResumeGame();
         if (betweenLevelUI != null) {
             betweenLevelUI.SetActive(false);

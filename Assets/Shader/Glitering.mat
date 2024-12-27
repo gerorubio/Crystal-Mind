@@ -55,14 +55,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BaseGradientPower: 2
-    - _GlitterOffset: 0.62
-    - _NoiseRotationSpeed: 4.44
+    - _BaseGradientPower: 1.5
+    - _GlitterOffset: 0.5
+    - _NoiseRotationSpeed: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 22.5
+    - _Scale: 250
     m_Colors:
-    - _Base_Color_1: {r: 0.049089726, g: 0.017849058, b: 0.103773594, a: 0}
-    - _Base_Color_2: {r: 0, g: 0, b: 0, a: 0}
-    - _GlitterColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Base_Color_1: {r: 0.06255953, g: 0.021880342, b: 0.128, a: 0}
+    - _Base_Color_2: {r: 0.12617142, g: 0.021942858, b: 0.128, a: 1}
+    - _GlitterColor: {r: 11.984315, g: 7.3667736, b: 2.430781, a: 1}
   m_BuildTextureStacks: []

@@ -62,20 +62,23 @@ public abstract class Weapon : MonoBehaviour {
     private void InitializeProjectileSource() {
         projectileSource = transform.Find("ProjectileSource")?.gameObject;
         if (projectileSource == null) {
-            Debug.LogError("ProjectileSource not found. Ensure the child object exists and is named 'ProjectileSource'.");
+            Debug.LogError("ProjectileSource not found.");
         }
 
         parentProjectiles = new GameObject("Bullet Container");
     }
 
     private void InitializeAmmunitionSystem() {
+        Character player = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
         ammunitionSystem = new AmmunitionSystem();
-        int d4 = initialAmmunition[0];
-        int d6 = initialAmmunition[1];
-        int d8 = initialAmmunition[2];
-        int d10 = initialAmmunition[3];
-        int d12 = initialAmmunition[4];
-        int d20 = initialAmmunition[5];
+
+        int d4 = player.characterSO.d4;
+        int d6 = player.characterSO.d6;
+        int d8 = player.characterSO.d8;
+        int d10 = player.characterSO.d10;
+        int d12 = player.characterSO.d12;
+        int d20 = player.characterSO.d20;
+        
         ammunitionSystem.InitializeAmmunition(d4, d6, d8, d12, d10, d20);
     }
 

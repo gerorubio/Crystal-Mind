@@ -25,7 +25,7 @@ public class Character : MonoBehaviour {
     public Weapon Weapon { get; set; }
 
     // Artifacts
-    private List<ArtifactSO> CurrentArtifacts { get; } = new List<ArtifactSO>();
+    public List<ArtifactSO> CurrentArtifacts { get; } = new List<ArtifactSO>();
 
     // Spell
     public SpellSO CurrentSpell { get; set; }
@@ -62,7 +62,12 @@ public class Character : MonoBehaviour {
         if (characterSO == null) {
             Debug.LogError("Character SO not set");
         } else {
-            InitializeCharacter();
+            PlayerData data = GameData.LoadedPlayerData;
+            if (data != null) {
+                InitializeCharacterFromData(data);
+            } else {
+                InitializeCharacter();
+            }
         }
     }
 
@@ -98,6 +103,30 @@ public class Character : MonoBehaviour {
         }
 
         CurrentSpellPoints = 0;
+    }
+
+    void InitializeCharacterFromData(PlayerData data) {
+        Character player = FindObjectOfType<Character>();
+        player.CurrentLevel = data.currentLevel;
+        player.CurrentHp = data.currentHp;
+        player.transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
+
+        if (!string.IsNullOrEmpty(data.equippedSpell)) {
+            Debug.Log("Loading: " +  data.equippedSpell);
+            player.CurrentSpell = Resources.Load<SpellSO>("Spells/" + data.equippedSpell);
+        }
+
+        List<ArtifactSO> loadedArtifacts = new List<ArtifactSO>();
+
+        foreach (var artifactName in data.artifacts) {
+            ArtifactSO artifact = Resources.Load<ArtifactSO>("Artifacts/" + artifactName);
+            if (artifact != null) {
+                loadedArtifacts.Add(artifact);
+            } else {
+                Debug.LogWarning($"Artifact {artifactName} not found in Resources!");
+            }
+        }
+        player.SetArtifacts(loadedArtifacts);
     }
 
     public void GainXP(int xp) {
@@ -137,6 +166,15 @@ public class Character : MonoBehaviour {
         foreach (ArtifactSO artifact in CurrentArtifacts) {
             artifact.artifactEffect.OnShoot(null, weapon, dice, projectile);
         }
+    }
+
+    public List<ArtifactSO> GetArtifacts() {
+        return CurrentArtifacts.ToList();
+    }
+
+    public void SetArtifacts(List<ArtifactSO> artifacts) {
+        CurrentArtifacts.Clear();
+        CurrentArtifacts.AddRange(artifacts);
     }
 
     // SPELLS

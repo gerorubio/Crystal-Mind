@@ -3,7 +3,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem {
-    public static void SavePlayer(Character player) {
+    public static PlayerData data;
+
+    public static void SaveData(Character player, EnemySpawn spawn) {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/player.crystal";
@@ -30,8 +32,19 @@ public static class SaveSystem {
 
             return data;
         } else {
-            Debug.LogError("Save file not found in " + path);
+            Debug.Log("Save file not found in " + path);
             return null;
+        }
+    }
+
+    public static void DeleteSaveFile() {
+        string path = Application.persistentDataPath + "/player.crystal";
+
+        if (File.Exists(path)) {
+            File.Delete(path);
+            Debug.Log("Save file deleted at " + path);
+        } else {
+            Debug.Log("No save file to delete at " + path);
         }
     }
 }

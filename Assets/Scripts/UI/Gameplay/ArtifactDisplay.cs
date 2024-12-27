@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class ArtifactDisplay : MonoBehaviour {
         if (character == null) {
             Debug.LogError("Player not found in scene");
         } else {
+            AddArtifact(character.CurrentArtifacts.First());
             character.OnEquipArtifact += AddArtifact;
         }
     }

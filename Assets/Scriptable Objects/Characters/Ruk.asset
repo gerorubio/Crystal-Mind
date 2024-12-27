@@ -22,7 +22,7 @@ MonoBehaviour:
   d10: 4
   d12: 1
   d20: 0
-  initialSpell: {fileID: 11400000, guid: b9f1bf09ddf88f54c9a23ff30c7bc1c9, type: 2}
+  initialSpell: {fileID: 11400000, guid: 20b02e0db4bbf2244ba0db30dd059282, type: 2}
   initialArtifact: {fileID: 11400000, guid: 1f34121baa230684c9bdfe60cae88a14, type: 2}
   hp: 3
   reloadSpeed: 2
