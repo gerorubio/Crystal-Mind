@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Graveyard.unity
+    guid: 4632d5b6f27bcf44a827177d1c828505
+  - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: e11e0d7c83a0657469aff770bdd24bed
   - enabled: 1

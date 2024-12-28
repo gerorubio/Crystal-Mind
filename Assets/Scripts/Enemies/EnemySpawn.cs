@@ -4,114 +4,186 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour {
     public GameObject[] enemies;
-
-    // Time between spawns
-    private float spawnInterval;
-
-    // Initial spawn interval in seconds
     [SerializeField]
-    private float initialSpawnInterval = 5f;
-    
-    // Time for the spawn interval to halve
-    [SerializeField]
-    private float halfLife = 30f; 
-
-    // Total time
-    private float elapsedTime = 0f;
-    // Current phase
-    private int currentPhase = 0;
-    // Time of each phase
-    [SerializeField]
-    private float[] phaseDuration = new float[4];
-
-    // Enemy container
     private GameObject enemyContainer;
-    // Donut shape variables
+
+    [SerializeField]
+    private float waveDuration = 30f;
+
+    [SerializeField]
+    private GameObject betweenLevelsUI;
+
+    private int currentWave = 1;
+
+    // Donut shape
     [SerializeField]
     private float r = 10f;
     [SerializeField]
     private float s = 3f;
 
-    // Reference to "Between Levels" UI
-    [SerializeField]
-    private GameObject betweenLevelsUI;
+    private bool spawnEnabled = true;
 
-    private bool hasPausedAfterSecondWave = false;
+    public GameObject eyeFloor;
+
+    private bool isWaveActive = false;
+
+    // Ending game
+    public GameObject victoryScreen;
+    public GameObject infiniteEyeDoor;
+
+    public Camera mainCamera; // Reference to the main camera
 
     void Start() {
-        enemyContainer = new GameObject("Enemy Container");
-        StartCoroutine(SpawnEnemies());
+        StartCoroutine(GameFlow());
     }
 
-    private void Update() {
-        elapsedTime += Time.deltaTime;
-
-        // Update spawnInterval using exponential decay
-        spawnInterval = initialSpawnInterval * Mathf.Pow(0.5f, elapsedTime / halfLife);
-
-        // Determine current phase
-        if (elapsedTime < phaseDuration[0]) {
-            currentPhase = 1; // Enemy 1
-        } else if (elapsedTime < phaseDuration[0] + phaseDuration[1]) {
-            currentPhase = 2; // Enemy 2
-        } else if (elapsedTime < phaseDuration[0] + phaseDuration[1] + phaseDuration[2]) {
-            currentPhase = 3; // Enemy 1 + 3
-
-            // Pause the game after second wave if not already paused
-            if (!hasPausedAfterSecondWave) {
-                PauseBetweenLevels();
-                hasPausedAfterSecondWave = true;
+    private IEnumerator GameFlow() {
+        while (currentWave <= 7 && spawnEnabled) {
+            if (currentWave == 7) {
+                ReachTop(); // Call ReachTop as soon as wave 7 begins
             }
 
-        } else {
-            currentPhase = 4; // All enemies
+            yield return StartCoroutine(SpawnWave(currentWave));
+
+            // Pause after waves divisible by 3 (excluding wave 7)
+            if (currentWave % 3 == 0 && currentWave != 7) {
+                PauseBetweenLevels();
+                yield return new WaitUntil(() => !betweenLevelsUI.activeSelf); // Wait for the player to resume
+            }
+
+            currentWave++;
+        }
+
+        // After wave 7, wait for all enemies to be cleared
+        if (currentWave > 7) {
+            Debug.Log("Wave 7 completed. Waiting for all enemies to be cleared.");
+            yield return new WaitUntil(() => !AreEnemiesRemaining());
+
+            // Move the camera to (0, 0, 0) and make it look at the infiniteEyeDoor
+            Debug.Log("All enemies cleared. Moving camera and showing victory screen.");
+            MoveCameraToVictory();
         }
     }
 
-    IEnumerator SpawnEnemies() {
-        while (true) {
-            SpawnEnemy();
-            yield return new WaitForSeconds(spawnInterval);
+    private IEnumerator SpawnWave(int wave) {
+        isWaveActive = true;
+        float waveStartTime = Time.time;
+
+        // Spawn enemies for the duration of the wave
+        while (Time.time - waveStartTime < waveDuration && spawnEnabled) {
+            SpawnEnemiesForWave(wave);
+            yield return new WaitForSeconds(0.5f); // Adjust spawn interval as needed
         }
+
+        Debug.Log($"Wave {wave} completed.");
+        isWaveActive = false;
     }
 
-    private void SpawnEnemy() {
-        GameObject enemyToSpawn = null;
+    private void SpawnEnemiesForWave(int wave) {
+        List<GameObject> enemiesToSpawn = new List<GameObject>();
 
-        switch (currentPhase) {
+        switch (wave) {
             case 1:
-                enemyToSpawn = enemies[0];
+                enemiesToSpawn.Add(enemies[0]);
                 break;
             case 2:
-                enemyToSpawn = enemies[1];
+                enemiesToSpawn.Add(enemies[1]);
                 break;
             case 3:
-                enemyToSpawn = enemies[Random.Range(0, 2)];
+                enemiesToSpawn.Add(enemies[2]);
                 break;
             case 4:
-                enemyToSpawn = enemies[Random.Range(0, 3)];
+                enemiesToSpawn.AddRange(new[] { enemies[0], enemies[1] });
+                break;
+            case 5:
+                enemiesToSpawn.AddRange(new[] { enemies[0], enemies[2] });
+                break;
+            case 6:
+                enemiesToSpawn.AddRange(new[] { enemies[1], enemies[2] });
+                break;
+            case 7:
+                enemiesToSpawn.AddRange(enemies);
                 break;
         }
 
-        if (enemyToSpawn != null) {
-            // Get position to spawn in a donut shape
-            float a = Random.Range(0, 2f * Mathf.PI);
-            float b = GenerateGaussian(r, s);
-
-            float x = b * Mathf.Cos(a);
-            float z = b * Mathf.Sin(a);
-
-            GameObject newEnemy = Instantiate(enemyToSpawn, new Vector3(x, 0, z), Quaternion.identity);
-
-            newEnemy.transform.SetParent(enemyContainer.transform);
+        foreach (var enemy in enemiesToSpawn) {
+            SpawnEnemy(enemy);
         }
     }
 
-    // Method to generate Gaussian distributed random numbers
+    private void SpawnEnemy(GameObject enemyToSpawn) {
+        float angle = Random.Range(0, 2f * Mathf.PI);
+        float radius = GenerateGaussian(r, s);
+
+        float x = radius * Mathf.Cos(angle);
+        float z = radius * Mathf.Sin(angle);
+
+        GameObject newEnemy = Instantiate(enemyToSpawn, new Vector3(x, 0, z), Quaternion.identity);
+        newEnemy.transform.SetParent(enemyContainer.transform);
+    }
+
+    private bool AreEnemiesRemaining() {
+        return enemyContainer.transform.childCount > 0;
+    }
+
+    public void ReachTop() {
+        eyeFloor.SetActive(true);
+        if (eyeFloor != null) {
+            Vector3 targetPosition = new Vector3(0, 0, 46.4f);
+            StartCoroutine(MoveToPosition(eyeFloor, targetPosition, 10f));
+        }
+
+        spawnEnabled = false;
+    }
+
+    private void MoveCameraToVictory() {
+        StartCoroutine(CameraToPositionAndLook(new Vector3(0, 0, 0), infiniteEyeDoor.transform.position, 3f));
+    }
+
+    private IEnumerator CameraToPositionAndLook(Vector3 targetPosition, Vector3 lookAtTarget, float duration) {
+        Vector3 startPosition = mainCamera.transform.position;
+        Quaternion startRotation = mainCamera.transform.rotation;
+
+        // Add an upward tilt to the lookAtTarget
+        Vector3 adjustedLookAtTarget = lookAtTarget + new Vector3(0, 2f, 0); // Adjust Y-value to look upward
+        Quaternion targetRotation = Quaternion.LookRotation(adjustedLookAtTarget - targetPosition);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration) {
+            mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            mainCamera.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        mainCamera.transform.position = targetPosition;
+        mainCamera.transform.rotation = targetRotation;
+
+        // Display the victory screen
+        if (victoryScreen != null) {
+            victoryScreen.SetActive(true);
+        }
+        Debug.Log("Victory achieved! Camera moved with upward tilt and victory screen displayed.");
+    }
+
+    private IEnumerator MoveToPosition(GameObject obj, Vector3 targetPosition, float duration) {
+        Vector3 startPosition = obj.transform.position;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration) {
+            obj.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        obj.transform.position = targetPosition;
+        Debug.Log("Object reached target position!");
+    }
+
     private float GenerateGaussian(float mean, float stdDev) {
-        // Use Box-Muller Transform
-        float u1 = Random.value; // Uniform(0,1) random value
-        float u2 = Random.value; // Uniform(0,1) random value
+        float u1 = Random.value;
+        float u2 = Random.value;
         float z0 = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) * Mathf.Cos(2.0f * Mathf.PI * u2);
         return z0 * stdDev + mean;
     }

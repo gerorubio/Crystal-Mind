@@ -1,12 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.Rendering.Universal;
-using UnityEditor.Experimental;
 
 public class UpgradeDisplay : MonoBehaviour {
     public GameObject upgradeUI;

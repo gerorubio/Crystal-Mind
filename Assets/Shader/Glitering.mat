@@ -60,9 +60,9 @@ Material:
     - _NoiseRotationSpeed: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 250
+    - _Scale: 200
     m_Colors:
-    - _Base_Color_1: {r: 0.06255953, g: 0.021880342, b: 0.128, a: 0}
-    - _Base_Color_2: {r: 0.12617142, g: 0.021942858, b: 0.128, a: 1}
-    - _GlitterColor: {r: 11.984315, g: 7.3667736, b: 2.430781, a: 1}
+    - _Base_Color_1: {r: 0.48248282, g: 0.30655926, b: 0.7830189, a: 0}
+    - _Base_Color_2: {r: 0.14167921, g: 0.049245283, b: 0.16981131, a: 1}
+    - _GlitterColor: {r: 5.9921575, g: 5.1604657, b: 0, a: 1}
   m_BuildTextureStacks: []
