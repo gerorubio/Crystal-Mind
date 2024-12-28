@@ -37,6 +37,8 @@ public class Character : MonoBehaviour {
     public int CurrentXP { get; set; } = 0;
     public int XpToNextLevel { get; set; } = 3;
 
+    public AudioSource xpAudioSource;
+
     // Invulverability
     private bool isInvulnerable = false;
     private float invulnerabilityTime = 0.5f;
@@ -131,6 +133,8 @@ public class Character : MonoBehaviour {
 
     public void GainXP(int xp) {
         CurrentXP += xp;
+
+        xpAudioSource.Play();
 
         if (CurrentXP >= XpToNextLevel) {
             CurrentXP -= XpToNextLevel;
