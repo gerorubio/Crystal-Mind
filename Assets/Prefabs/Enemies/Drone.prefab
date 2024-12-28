@@ -104,7 +104,7 @@ MonoBehaviour:
   animator: {fileID: 1393925034165973965}
   attackDistance: 7
   chaseDistance: 10
-  projectilePrefab: {fileID: 8979974552765006230, guid: f30d1a521d643894da733c8c03b1b327,
+  projectilePrefab: {fileID: 8068697373730390335, guid: 9e623bae318af0342b95a6ea484a566a,
     type: 3}
   projectileSource: {fileID: 379671741799861950}
   projectileForce: 10
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSource: {fileID: 379671741799861950}
-  projectilePrefab: {fileID: 8979974552765006230, guid: f30d1a521d643894da733c8c03b1b327,
+  projectilePrefab: {fileID: 8068697373730390335, guid: 9e623bae318af0342b95a6ea484a566a,
     type: 3}
   projectileForce: 25
 --- !u!1001 &6464954941328498651

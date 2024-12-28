@@ -62,7 +62,7 @@ Material:
     - _QueueOffset: 0
     - _Scale: 200
     m_Colors:
-    - _Base_Color_1: {r: 0.48248282, g: 0.30655926, b: 0.7830189, a: 0}
-    - _Base_Color_2: {r: 0.14167921, g: 0.049245283, b: 0.16981131, a: 1}
-    - _GlitterColor: {r: 5.9921575, g: 5.1604657, b: 0, a: 1}
+    - _Base_Color_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Base_Color_2: {r: 0, g: 0, b: 0, a: 1}
+    - _GlitterColor: {r: 2.9960787, g: 2.5802329, b: 0, a: 1}
   m_BuildTextureStacks: []
