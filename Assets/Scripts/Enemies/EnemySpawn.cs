@@ -45,6 +45,10 @@ public class EnemySpawn : MonoBehaviour {
 
             yield return StartCoroutine(SpawnWave(currentWave));
 
+            // Wait for all enemies to be cleared after every wave
+            Debug.Log($"Wave {currentWave} completed. Waiting for all enemies to be cleared.");
+            yield return new WaitUntil(() => !AreEnemiesRemaining());
+
             // Pause after waves divisible by 3 (excluding wave 7)
             if (currentWave % 3 == 0 && currentWave != 7) {
                 PauseBetweenLevels();
@@ -75,7 +79,7 @@ public class EnemySpawn : MonoBehaviour {
             yield return new WaitForSeconds(0.5f); // Adjust spawn interval as needed
         }
 
-        Debug.Log($"Wave {wave} completed.");
+        Debug.Log($"Wave {wave} spawning completed.");
         isWaveActive = false;
     }
 

@@ -7887,7 +7887,7 @@ MonoBehaviour:
   - {fileID: 3860344374968933658, guid: 07620f7389d03c24492d0209a15a5a83, type: 3}
   - {fileID: 3860344374968933658, guid: e7415bb3509422f468aca65fad843aed, type: 3}
   enemyContainer: {fileID: 319678163}
-  waveDuration: 20
+  waveDuration: 5
   betweenLevelsUI: {fileID: 575779644}
   r: 40
   s: 2
